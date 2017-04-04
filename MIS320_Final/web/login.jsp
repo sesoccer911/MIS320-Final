@@ -21,15 +21,15 @@
 
             <div class="container">
                 <label><b>Username</b></label>
-                <input type="text" placeholder="Enter Username" name="uname" required>
+                <input type="text" placeholder="Enter Username" name="user" required>
 
                 <label><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" required>
+                <input type="password" placeholder="Enter Password" name="pass" required>
 
-                <button type="submit"class="loginbtn">Login</button>
+                <button type="submit"class="loginbtn"> Login</button>
                 
-                <button type="button" class="cancelbtn">Cancel</button>
-                <button type="button" class="registerbtn">Register</button>
+                <button type="button" class="cancelbtn"> Cancel</button>
+                <button type="button" class="registerbtn"> Register</button>
                 <input type="checkbox" checked="checked"> Remember me
                 <span class="psw">Forgot <a href="#">password?</a></span>
             </div>
