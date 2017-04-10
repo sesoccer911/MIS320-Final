@@ -12,11 +12,11 @@
             <link rel="stylesheet" href="css/main.css">
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <title>Login Page</title>
+            <title>Admin Login Page</title>
         </head>
-        <form method="post" action="LoginServlet">
+        <form method="post" action="AdminLoginServlet">
             <div class="imgcontainer">
-                <img src="images/img_avatar2.png" alt="Avatar" class="avatar">
+                <img src="images/admin.png" alt="Avatar" class="avatar">
             </div>
             <div class="container">
                 <label><b>Username</b></label>
@@ -25,7 +25,7 @@
                 <input type="password" placeholder="Enter Password" name="password" required>
                 <input type="submit" value="Login" />
                 
-                <a href="register.jsp" style="margin-left:30px;">Register Here</a>
+                <a href="login.jsp" style="margin-left:30px;">Customer Login</a>
     </div>
 </form>
 </html>
