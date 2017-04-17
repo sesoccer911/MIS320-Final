@@ -9,21 +9,36 @@
     <ui:composition template="template.xhtml">
 
         <ui:define name="body">
-            <body onload="init();">
-            <h:outputScript name="SearchFunctions.js" target="head" />
-            </body>
+            <h:outputScript name="javascript.js" target="body" />
+            <form name="autofillform" action="autocomplete">
+                <table border="0" cellpadding="5">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Film Name:</strong></td>
+                            <td><input type="text"
+                                       size="40"
+                                       id="complete-field"
+                                       onkeyup="doCompletion();"/></td>
+                        </tr>
+                        <tr>
+                            <td id="auto-row" colspan="2">
+                                <table id="complete-table" class="popupBox"></table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+            <h:commandButton id="search" value="find"/>
+
             <h:form>
 
-                <table border = "0">
-                    <tr>
-                        <td><input type="text" id="search" onkeyup="searchText()"/></td>
-                    </tr>
-                    <tr>
-                        <td><div id="result"></div></td>
-                    </tr>
 
-                </table>
-                <input type="submit" id="search" name="find" value="find"/>
                 <h:commandLink action="#{filmController.previous}" value="Previous #{filmController.pageSize}" rendered="#{filmController.hasPreviousPage}"/> 
                 <h:commandLink action="#{filmController.next}" value="Next #{filmController.pageSize}" rendered="#{filmController.hasNextPage}"/> 
                 <h:dataTable value="#{filmController.filmTitles}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">

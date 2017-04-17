@@ -16,11 +16,11 @@ function init() {
 }
 
 function doCompletion() {
-        var url = "autocomplete?action=complete&id=" + escape(completeField.value);
-        req = initRequest();
-        req.open("GET", url, true);
-        req.onreadystatechange = callback;
-        req.send(null);
+    var url = "autocomplete?action=complete&id=" + escape(completeField.value);
+    req = initRequest();
+    req.open("GET", url, true);
+    req.onreadystatechange = callback;
+    req.send(null);
 }
 
 function initRequest() {
@@ -42,7 +42,7 @@ function callback() {
         }
     }
 }
-function appendComposer(firstName,lastName,composerId) {
+function appendFilm(title, filmId) {
 
     var row;
     var cell;
@@ -64,11 +64,11 @@ function appendComposer(firstName,lastName,composerId) {
 
     linkElement = document.createElement("a");
     linkElement.className = "popupItem";
-    linkElement.setAttribute("href", "autocomplete?action=lookup&id=" + composerId);
-    linkElement.appendChild(document.createTextNode(firstName + " " + lastName));
+    linkElement.setAttribute("href", "autocomplete?action=lookup&id=" + filmId);
+    linkElement.appendChild(document.createTextNode(title));
     cell.appendChild(linkElement);
 }
-function getElementY(element){
+function getElementY(element) {
 
     var targetTop = 0;
 
@@ -85,7 +85,7 @@ function getElementY(element){
 function clearTable() {
     if (completeTable.getElementsByTagName("tr").length > 0) {
         completeTable.style.display = 'none';
-        for (loop = completeTable.childNodes.length -1; loop >= 0 ; loop--) {
+        for (loop = completeTable.childNodes.length - 1; loop >= 0; loop--) {
             completeTable.removeChild(completeTable.childNodes[loop]);
         }
     }
@@ -97,20 +97,18 @@ function parseMessages(responseXML) {
         return false;
     } else {
 
-        var composers = responseXML.getElementsByTagName("composers")[0];
+        var films = responseXML.getElementsByTagName("film")[0];
 
-        if (composers.childNodes.length > 0) {
+        if (films.childNodes.length > 0) {
             completeTable.setAttribute("bordercolor", "black");
             completeTable.setAttribute("border", "1");
 
-            for (loop = 0; loop < composers.childNodes.length; loop++) {
-                var composer = composers.childNodes[loop];
-                var firstName = composer.getElementsByTagName("firstName")[0];
-                var lastName = composer.getElementsByTagName("lastName")[0];
-                var composerId = composer.getElementsByTagName("id")[0];
-                appendComposer(firstName.childNodes[0].nodeValue,
-                    lastName.childNodes[0].nodeValue,
-                    composerId.childNodes[0].nodeValue);
+            for (loop = 0; loop < films.childNodes.length; loop++) {
+                var film = films.childNodes[loop];
+                var title = film.getElementsByTagName("title")[0];
+                var filmId = film.getElementsByTagName("filmId")[0];
+                appendFilm(title.childNodes[0].nodeValue,
+                        filmId.childNodes[0].nodeValue);
             }
         }
     }
