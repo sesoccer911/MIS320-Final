@@ -6,10 +6,11 @@
       xmlns:f="http://java.sun.com/jsf/core">
 
     <ui:composition template="template.xhtml">
+                        <h:outputScript name="javascript.js" target="body" />
                     <body onload="init()">
         <ui:define name="body">
 
-                <h:outputScript name="javascript.js" target="body" />
+
                 <form name="autofillform" action="autocomplete">
                     <table border="0" cellpadding="5">
                         <thead>

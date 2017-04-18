@@ -12,7 +12,7 @@ function searchText() {
     } else if (window.ActiveXObject) {
         req = new ActiveXObject("Microsoft.XMLHttp");
     }
-    var url = "/SearchEng/SearchServlet?search=" + search;
+    var url = "/SearchServlet?search=" + search;
     req.open("get", url, true);
     req.onreadystatechange = callback;
     req.send(null);
