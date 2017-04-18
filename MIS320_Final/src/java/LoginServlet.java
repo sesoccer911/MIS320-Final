@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
             pst.setString(2, password);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
-                out.println("Correct login credentials");
+                response.sendRedirect("faces/cResult.xhtml");
             } else {
                 out.println("Incorrect login credentials");
 
