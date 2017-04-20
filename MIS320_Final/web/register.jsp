@@ -31,8 +31,8 @@
                 <label><b>User ID</b></label>
                 <input type="text" placeholder="Enter User ID" name="userID" required>
 
-                <label><b>Password</b></label>
-                <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Enter Password" name="password" required>
+                <label><b>Password (Minimum 8 Characters Alphanumeric)</b></label>
+                <input type="password" pattern="(?=.*\d)(?=.*[a-z]).{8,}" placeholder="Enter Password" name="password" required>
                 <label><b>Store</b></label>
                 <select name="storeID">
                     <option value="1">Store 1</option>
