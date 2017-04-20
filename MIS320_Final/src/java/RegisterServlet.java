@@ -27,6 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns = {"/RegisterServlet"})
 public class RegisterServlet extends HttpServlet {
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
@@ -41,10 +42,13 @@ public class RegisterServlet extends HttpServlet {
 
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sakila", "root", "nbuser");
             Statement st = con.createStatement();
+            //INSERT INTO sakila.customer (store_id, first_name, last_name, email, address_id, active, create_date, last_update, username, password) 
+	//VALUES (1, 'ROBIN', 'HAYES', 'ROBIN.HAYES@sakilacustomer.org', 104, true, '2006-02-14 22:04:36.0', '2006-02-15 04:57:20.0', '', NULL);
+
             int i = st.executeUpdate("INSERT INTO sakila.customer(store_id, first_name, last_name, email, address_id, active, create_date, last_update, username, password)"
-                    + "VALUES('" + storeID + "','" + fName + "','" + lName + "','" + email + "','" + 00 + "','" + "true" + "', CURDATE(), CURDATE()" + "','" + userID +"','" + password);
-//            INSERT INTO sakila.customer(store_id, first_name, last_name, email, address_id, active, create_date, last_update, username, password) 
-//            VALUES(1, 'test', 'test', 'test', 101, true, '2017-04-09 21:11:43.321', '2017-04-09 21:12:02.124', 'test', 'test'
+                    + "VALUES(" + storeID + ",'" + fName + "','" + lName + "','" + email + "'," + 1 + "," + "true" + ", CURDATE(), CURDATE()" + ",'" + userID +"','" + password+"')");
+           //int i = st.executeUpdate("INSERT INTO sakila.customer(store_id, first_name, last_name, email, address_id, active, create_date, last_update, username, password)" +
+           //"VALUES(" + 1 + "," + "'test'" +"," + "'test', 'test', 101, true, '2017-04-09 21:11:43.321', '2017-04-09 21:12:02.124', 'test', 'test')");
             
 
             if (i > 0) {
@@ -52,7 +56,7 @@ public class RegisterServlet extends HttpServlet {
                 //response.sendRedirect("welcome.jsp");
                 // out.print("Registration Successfull!"+"<a href='index.jsp'>Go to Login</a>");
             } else {
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("login.jsp");
             }
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
