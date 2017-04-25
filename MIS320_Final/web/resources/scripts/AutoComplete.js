@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  *//*jslint  browser: true, white: true, plusplus: true */
-        /*global $, films*/
+        /*global $, films, sql*/
         $(function () {
             'use strict';
             //var filmArray1 = 
