@@ -7,7 +7,7 @@
            uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core">
     <head>
         <link rel="stylesheet" href="resources/css/cssLayout.css">
         <link rel="stylesheet" href="resources/css/styles.css">
@@ -17,6 +17,7 @@
     </head>
     <top/>
     <body>
+
         <table id="j_idt10:panel" columns ="2">
 
             <tr>
