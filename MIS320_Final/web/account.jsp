@@ -3,7 +3,7 @@
     Created on : Apr 16, 2017, 8:17:07 PM
     Author     : ewaremickens
 --%>
-
+<%--
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -11,19 +11,29 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title> Customer Account</title>
     </head>
-     <label><b>First Name</b></label>
-     <label><b>Last Name</b></label>
-     <label><b>Password</b></label>
-     <label><b>Email</b></label>
-        
-        <button type="button"  class=" ">Submit Changes</button>
+       
+             <form method="POST" action='' name="">
+            First Name : <input
+                type="text" name="firstName"
+                value="<c:out value="${}" />" /> <br /> 
+            Last Name : <input
+                type="text" name="lastName"
+                value="<c:out value="${}" />" /> <br /> 
+            Password : <input
+                type="text" name="dob"
+                value="<c:out value="${}" />" /> <br /> 
+            Email : <input type="text" name="email"
+                           value="<c:out value="${}" />" /> <br /> <input
+                           type="submit" value="Submit" />
+        </form>
+     
         
         <button type="button" class=" "> View Cart</button>
         
         <label><b>Payment Method</b></label>
             <div class="dropdown">
-            <button onclick="myFunction()" class="dropbtn"></button>
-            <div id="myDropdown" class="dropdown-content">
+            <button onclick=" " class="dropbtn"></button>
+            <div id=" " class="dropdown-content">
             <a href="#">Link 1</a>
             <a href="#">Link 2</a>
             <a href="#">Link 3</a>
@@ -94,6 +104,7 @@
                    </h:dataTable>
                 <br/>
             </h:form>
-        
-      
-</html>
+   
+</html> 
+
+--%>

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 31, 2017 11:53:25 AM by Hibernate Tools 4.3.1 -->
+<!-- Generated Apr 27, 2017 3:05:22 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="dvdrental.Store" table="store" catalog="sakila" optimistic-lock="version">
         <id name="storeId" type="java.lang.Byte">
@@ -22,6 +22,18 @@
                 <column name="store_id" not-null="true" />
             </key>
             <one-to-many class="dvdrental.Staff" />
+        </set>
+        <set name="inventories" table="inventory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="store_id" not-null="true" />
+            </key>
+            <one-to-many class="dvdrental.Inventory" />
+        </set>
+        <set name="customers" table="customer" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="store_id" not-null="true" />
+            </key>
+            <one-to-many class="dvdrental.Customer" />
         </set>
     </class>
 </hibernate-mapping>

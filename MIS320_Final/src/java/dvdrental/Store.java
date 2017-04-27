@@ -1,5 +1,5 @@
 package dvdrental;
-// Generated Mar 31, 2017 11:53:24 AM by Hibernate Tools 4.3.1
+// Generated Apr 27, 2017 3:04:49 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -17,6 +17,8 @@ public class Store  implements java.io.Serializable {
      private Staff staff;
      private Date lastUpdate;
      private Set<Staff> staffs = new HashSet<Staff>(0);
+     private Set<Inventory> inventories = new HashSet<Inventory>(0);
+     private Set<Customer> customers = new HashSet<Customer>(0);
 
     public Store() {
     }
@@ -27,11 +29,13 @@ public class Store  implements java.io.Serializable {
         this.staff = staff;
         this.lastUpdate = lastUpdate;
     }
-    public Store(Address address, Staff staff, Date lastUpdate, Set<Staff> staffs) {
+    public Store(Address address, Staff staff, Date lastUpdate, Set<Staff> staffs, Set<Inventory> inventories, Set<Customer> customers) {
        this.address = address;
        this.staff = staff;
        this.lastUpdate = lastUpdate;
        this.staffs = staffs;
+       this.inventories = inventories;
+       this.customers = customers;
     }
    
     public Byte getStoreId() {
@@ -68,6 +72,20 @@ public class Store  implements java.io.Serializable {
     
     public void setStaffs(Set<Staff> staffs) {
         this.staffs = staffs;
+    }
+    public Set<Inventory> getInventories() {
+        return this.inventories;
+    }
+    
+    public void setInventories(Set<Inventory> inventories) {
+        this.inventories = inventories;
+    }
+    public Set<Customer> getCustomers() {
+        return this.customers;
+    }
+    
+    public void setCustomers(Set<Customer> customers) {
+        this.customers = customers;
     }
 
 
