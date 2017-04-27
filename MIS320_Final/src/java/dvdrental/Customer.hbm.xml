@@ -3,9 +3,9 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Apr 27, 2017 3:05:22 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="dvdrental.Staff" table="staff" catalog="sakila" optimistic-lock="version">
-        <id name="staffId" type="java.lang.Byte">
-            <column name="staff_id" />
+    <class name="dvdrental.Customer" table="customer" catalog="sakila" optimistic-lock="version">
+        <id name="customerId" type="java.lang.Short">
+            <column name="customer_id" />
             <generator class="identity" />
         </id>
         <many-to-one name="address" class="dvdrental.Address" fetch="select">
@@ -20,14 +20,17 @@
         <property name="lastName" type="string">
             <column name="last_name" length="45" not-null="true" />
         </property>
-        <property name="picture" type="binary">
-            <column name="picture" />
-        </property>
         <property name="email" type="string">
             <column name="email" length="50" />
         </property>
         <property name="active" type="boolean">
             <column name="active" not-null="true" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="create_date" length="19" not-null="true" />
+        </property>
+        <property name="lastUpdate" type="timestamp">
+            <column name="last_update" length="19" not-null="true" />
         </property>
         <property name="username" type="string">
             <column name="username" length="16" not-null="true" />
@@ -35,24 +38,15 @@
         <property name="password" type="string">
             <column name="password" length="40" />
         </property>
-        <property name="lastUpdate" type="timestamp">
-            <column name="last_update" length="19" not-null="true" />
-        </property>
         <set name="payments" table="payment" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="staff_id" not-null="true" />
+                <column name="customer_id" not-null="true" />
             </key>
             <one-to-many class="dvdrental.Payment" />
         </set>
-        <set name="stores" table="store" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="manager_staff_id" not-null="true" unique="true" />
-            </key>
-            <one-to-many class="dvdrental.Store" />
-        </set>
         <set name="rentals" table="rental" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="staff_id" not-null="true" />
+                <column name="customer_id" not-null="true" />
             </key>
             <one-to-many class="dvdrental.Rental" />
         </set>

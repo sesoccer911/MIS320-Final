@@ -21,7 +21,7 @@
                 value="<c:out value="${}" />" /> <br /> 
             Password : <input
                 type="text" name="dob"
-                value="<c:out value="${} />" /> <br /> 
+                value="<c:out value="${}" />" /> <br /> 
             Email : <input type="text" name="email"
                            value="<c:out value="${}" />" /> <br /> <input
                            type="submit" value="Submit" />

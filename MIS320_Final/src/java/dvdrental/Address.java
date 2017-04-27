@@ -1,5 +1,5 @@
 package dvdrental;
-// Generated Mar 31, 2017 11:53:24 AM by Hibernate Tools 4.3.1
+// Generated Apr 27, 2017 3:04:49 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -22,6 +22,7 @@ public class Address  implements java.io.Serializable {
      private byte[] location;
      private Date lastUpdate;
      private Set<Staff> staffs = new HashSet<Staff>(0);
+     private Set<Customer> customers = new HashSet<Customer>(0);
      private Set<Store> stores = new HashSet<Store>(0);
 
     public Address() {
@@ -36,7 +37,7 @@ public class Address  implements java.io.Serializable {
         this.location = location;
         this.lastUpdate = lastUpdate;
     }
-    public Address(City city, String address, String address2, String district, String postalCode, String phone, byte[] location, Date lastUpdate, Set<Staff> staffs, Set<Store> stores) {
+    public Address(City city, String address, String address2, String district, String postalCode, String phone, byte[] location, Date lastUpdate, Set<Staff> staffs, Set<Customer> customers, Set<Store> stores) {
        this.city = city;
        this.address = address;
        this.address2 = address2;
@@ -46,6 +47,7 @@ public class Address  implements java.io.Serializable {
        this.location = location;
        this.lastUpdate = lastUpdate;
        this.staffs = staffs;
+       this.customers = customers;
        this.stores = stores;
     }
    
@@ -118,6 +120,13 @@ public class Address  implements java.io.Serializable {
     
     public void setStaffs(Set<Staff> staffs) {
         this.staffs = staffs;
+    }
+    public Set<Customer> getCustomers() {
+        return this.customers;
+    }
+    
+    public void setCustomers(Set<Customer> customers) {
+        this.customers = customers;
     }
     public Set<Store> getStores() {
         return this.stores;
