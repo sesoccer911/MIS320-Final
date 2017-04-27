@@ -16,8 +16,11 @@
         <title>Search Result</title>
     </head>
     <body>
-        <table columns ="2">
-            Title: <c:out value="${title}"/>
+        <table id="j_idt10:panel" columns ="2">
+
+            <tr>
+                <td>Title:</td> <td><c:out value="${title}"/></td>
+            </tr>
         </table>
     </body>
 </html>
