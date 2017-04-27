@@ -103,7 +103,6 @@ public class AutoCompleteForward extends HttpServlet {
         System.out.println(film.getTitle());
         int langID = film.getLanguageByLanguageId().getLanguageId().intValue();
         Language language = null;
-
         try {
             session = HibernateUtil.getSessionFactory().getCurrentSession();
             org.hibernate.Transaction tx = session.beginTransaction();
@@ -114,6 +113,7 @@ public class AutoCompleteForward extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.println(language.getName());
         String lang = language.getName();
         List<Actor> actorList = null;
         try {
