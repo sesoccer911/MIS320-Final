@@ -25,6 +25,10 @@
         <servlet-name>AutoComplete</servlet-name>
         <servlet-class>AutoComplete</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AutoCompleteForward</servlet-name>
+        <servlet-class>AutoCompleteForward</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
@@ -44,6 +48,10 @@
     <servlet-mapping>
         <servlet-name>AutoComplete</servlet-name>
         <url-pattern>/AutoComplete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AutoCompleteForward</servlet-name>
+        <url-pattern>/AutoCompleteForward</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

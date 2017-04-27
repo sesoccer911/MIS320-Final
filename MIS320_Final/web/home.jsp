@@ -13,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Home Page</title>
     </head>
-    <form">
+    <form>
         <div class="imgcontainer">
             <img src="images/Blockbuster_logo.png" alt="Avatar" class="avatar">
         </div>

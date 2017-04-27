@@ -3,20 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  *//*jslint  browser: true, white: true, plusplus: true */
-        /*global $, films, sql*/
+        /*global $, films, Packages */
         $(function () {
             'use strict';
-            //var filmArray1 = 
             var filmArray = $.map(films, function (value, key) {
                 return {value: value, data: key};
             });
-            console.log(filmArray);
             // Initialize ajax autocomplete:
             $('#autocomplete').autocomplete({
                 lookup: filmArray,
-                lookupLimit: 10,
+                lookupLimit: 20,
                 minChars: 2,
                 onSelect: function (suggestion) {
-                    $('#selection-ajax').html('You selected: ' + suggestion.value + ', ' + suggestion.data);
+                    $('#selection-ajax').value(suggestion.data);
                 }});
         });

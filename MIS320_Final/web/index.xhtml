@@ -9,21 +9,21 @@
         <ui:define name="top">Welcome to the Movie Browser</ui:define>
         <ui:define name="body">
             <script type="text/javascript" src="resources/scripts/jquery-1.8.2.min.js"></script>
-            <script type="text/javascript" src="resources/scripts/jquery.mockjax.js"></script>
             <script type="text/javascript" src="resources/src/jquery.autocomplete.js"></script>
             <script type="text/javascript" src="resources/scripts/AutoComplete.js"></script>
             <script type="text/javascript" src="resources/scripts/films.js"></script>
-            <div class="container">
-                <div style="position: relative; height: 80px;">
-                    <input type="text" name="film" id="autocomplete" style="position: absolute; z-index: 2; color: #CCC"/>
+
+
+            <form method="post" action="AutoCompleteForward">
+                <div class="container">
+                    <div style="position: relative; height: 80px;">
+                        <input type="text" name="film" id="autocomplete" style="position: absolute; z-index: 2; color: #CCC"/> 
+                    </div>
+                    <input id="selection-button" type="submit"/>
+                    <div id="selection-ajax" name="selection-ajax" type="hidden"></div>
                 </div>
-
-                <div id="selection-ajax"></div>
-            </div>
-
-
+            </form>
             <h:form>
-
                 <h:commandLink action="#{filmController.previous}" value="Previous #{filmController.pageSize}" rendered="#{filmController.hasPreviousPage}"/> 
                 <h:commandLink action="#{filmController.next}" value="Next #{filmController.pageSize}" rendered="#{filmController.hasNextPage}"/>
 

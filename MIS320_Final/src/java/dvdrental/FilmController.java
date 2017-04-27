@@ -12,6 +12,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+import org.hibernate.Session;
 
 /**
  *
@@ -103,6 +104,14 @@ public class FilmController implements Serializable {
         current = (Film) getFilmTitles().getRowData();
         return "browse";
     }
+    
+    public String prepareJSView(){
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+  //      int id = session.getElementById("selection-ajax");
+        current = helper.getFilmByID(1);
+        return "browse";
+    }
+    
     public String prepareList(){
         recreateModel();
         return "index";
