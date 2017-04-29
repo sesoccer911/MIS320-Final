@@ -70,10 +70,9 @@ public class FilmController implements Serializable {
         return filmTitles;
     }
 
-    public DataModel getFilmTitlesByCat(String catId) {
+    public DataModel getFilmTitlesByAction() {
         if (filmTitles == null) {
-            int Id = Integer.parseInt(catId);
-            filmTitles = new ListDataModel(helper.getFirstTenByCat(Id));
+            filmTitles = new ListDataModel(helper.getFilmTitlesByCat(1));
         }
         return filmTitles;
     }
