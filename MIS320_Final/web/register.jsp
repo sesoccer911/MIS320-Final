@@ -6,6 +6,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    <title>Blockbuster User Registration</title>
     <head>
         <link rel="stylesheet" href="resources/css/main.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

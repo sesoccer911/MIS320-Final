@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
     <html>
+        <title>Blockbuster Customer Login</title>
         <head>
             <link rel="stylesheet" href="resources/css/main.css">
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
