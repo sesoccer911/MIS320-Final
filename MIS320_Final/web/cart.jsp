@@ -85,7 +85,7 @@
         </tr>
     </table> 
     <p><a href="index.xhtml">Back to Search</a></p>
-    <p><a href="checkout.xhtml">Checkout Cart</a></p>
+    <p><a href="checkout.jsp">Checkout Cart</a></p>
 </div>
 <p><br><br>
 </html>
