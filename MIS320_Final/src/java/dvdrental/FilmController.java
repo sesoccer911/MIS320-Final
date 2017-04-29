@@ -29,7 +29,7 @@ public class FilmController implements Serializable {
     FilmHelper helper;
     private int recordCount = 1000;
     private int pageSize = 10;
-
+    int catId;
     private Film current;
     private int selectedItemIndex;
 
@@ -48,6 +48,13 @@ public class FilmController implements Serializable {
         this.endId = endId;
     }
 
+    public FilmController(int catId) {
+        helper = new FilmHelper();
+        startId = 1;
+        endId = 10;
+        this.catId = catId;
+    }
+
     public Film getSelected() {
         if (current == null) {
             current = new Film();
@@ -63,12 +70,21 @@ public class FilmController implements Serializable {
         return filmTitles;
     }
 
+    public DataModel getFilmTitlesByCat(String catId) {
+        if (filmTitles == null) {
+            int Id = Integer.parseInt(catId);
+            filmTitles = new ListDataModel(helper.getFirstTenByCat(Id));
+        }
+        return filmTitles;
+    }
+
     void recreateModel() {
         filmTitles = null;
     }
 //these methods are used to display the table and navigate the pages.
 //The methods that return "index" or "browse" will prompt the JSF navigation handler to try to open a page named index.xhtml or browse.xhtml. 
-     public boolean isHasNextPage() {
+
+    public boolean isHasNextPage() {
         if (endId + pageSize <= recordCount) {
             return true;
         }
@@ -76,14 +92,14 @@ public class FilmController implements Serializable {
     }
 
     public boolean isHasPreviousPage() {
-        if (startId-pageSize > 0) {
+        if (startId - pageSize > 0) {
             return true;
         }
         return false;
     }
 
     public String next() {
-        startId = endId+1;
+        startId = endId + 1;
         endId = endId + pageSize;
         recreateModel();
         return "index";
@@ -100,24 +116,25 @@ public class FilmController implements Serializable {
         return pageSize;
     }
 
-    public String prepareView(){
+    public String prepareView() {
         current = (Film) getFilmTitles().getRowData();
         return "browse";
     }
-    
-    public String prepareJSView(){
+
+    public String prepareJSView() {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-  //      int id = session.getElementById("selection-ajax");
+        //      int id = session.getElementById("selection-ajax");
         current = helper.getFilmByID(1);
         return "browse";
     }
-    
-    public String prepareList(){
+
+    public String prepareList() {
         recreateModel();
         return "index";
     }
 //the following methods access the helper class and retrieves additional film details
-public String getLanguage() {
+
+    public String getLanguage() {
         int langID = current.getLanguageByLanguageId().getLanguageId().intValue();
         String language = helper.getLangByID(langID);
         return language;
@@ -138,6 +155,6 @@ public String getLanguage() {
 
     public String getCategory() {
         Category category = helper.getCategoryByID(current.getFilmId());
-        return  category.getName();
-    }    
+        return category.getName();
+    }
 }

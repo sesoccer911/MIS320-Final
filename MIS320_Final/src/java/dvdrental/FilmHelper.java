@@ -5,6 +5,7 @@
  */
 package dvdrental;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -36,6 +37,29 @@ public class FilmHelper {
         }
         return filmList;
     }
+        public List getFilmTitlesByCat(int catID) {
+        List<Film> filmList = null;
+        try {
+            session = HibernateUtil.getSessionFactory().getCurrentSession();
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createQuery("select film from FilmCategory as cat inner join cat.film film where cat.id.categoryId =" + catID);
+            filmList = (List<Film>) q.list();
+            tx.commit();
+            tx = null;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return filmList;
+    }
+        public List getFirstTenByCat(int catID){
+            List<Film> filmList = getFilmTitlesByCat(catID);
+            List<Film> tenFilms = new ArrayList<Film>();
+            for(int i = 0; i < filmList.size () && i < 10; i++){
+                tenFilms.add(filmList.get(i));
+            }
+            return tenFilms;
+        }
+        
 //method that retrieves the actors in a particular film. The method constructs the query using filmId as the input variable
 
     public List getActorsByID(int filmId) {
