@@ -6,8 +6,9 @@
       xmlns:f="http://java.sun.com/jsf/core">
 
     <ui:composition template="template.xhtml">
-        <ui:define name="top">Welcome to the Movie Browser <a href="cart.jsp">Cart</a></ui:define>
+        <ui:define name="top">Welcome to the Movie Browser></ui:define>
         <ui:define name="body">
+
             <script type="text/javascript" src="resources/scripts/jquery-1.8.2.min.js"></script>
             <script type="text/javascript" src="resources/src/jquery.autocomplete.js"></script>
             <script type="text/javascript" src="resources/scripts/AutoComplete.js"></script>
@@ -23,36 +24,40 @@
                     <div id="selection-ajax" name="selection-ajax" type="hidden"></div>
                 </div>
             </form>
-   
-                <select name="CategoryDropdown" onselect="la(this.value)">
-                    <option value="">Please choose a category</option>
-                    <option value="indexAction.xhtml">Action</option>
-                    <option value="indexAnimation.xhtml">Animation</option>
-                    <option value="indexChildren.xhtml">Children</option>
-                    <option value="indexClassics.xhtml">Classics</option>
-                    <option value="indexComedy.xhtml">Comedy</option>
-                    <option value="indexDocumentary.xhtml">Documentary</option>
-                    <option value="indexDrama.xhtml">Drama</option>
-                    <option value="indexFamily.xhtml">Family</option>
-                    <option value="indexForeign.xhtml">Foreign</option>
-                    <option value="indexGames.xhtml">Games</option>
-                    <option value="indexHorror.xhtml">Horror</option>
-                    <option value="indexMusic.xhtml">Music</option>
-                    <option value="indexNew.xhtml">New</option>
-                    <option value="indexScifi.xhtml">Scifi</option>
-                    <option value="indexSports.xhtml">Sports</option>
-                    <option value="indexTravel.xhtml">Travel</option>
-                </select>
-                <input id="selection-button" type="submit" onclick="la(CategoryDropdown.value)"/>
 
-            <script>
-                function la(src)
+            <select id="CategoryDropdown" name="CategoryDropdown">
+                <option value="">Please choose a category</option>
+                <option value="indexAction.xhtml">Action</option>
+                <option value="indexAnimation.xhtml">Animation</option>
+                <option value="indexChildren.xhtml">Children</option>
+                <option value="indexClassics.xhtml">Classics</option>
+                <option value="indexComedy.xhtml">Comedy</option>
+                <option value="indexDocumentary.xhtml">Documentary</option>
+                <option value="indexDrama.xhtml">Drama</option>
+                <option value="indexFamily.xhtml">Family</option>
+                <option value="indexForeign.xhtml">Foreign</option>
+                <option value="indexGames.xhtml">Games</option>
+                <option value="indexHorror.xhtml">Horror</option>
+                <option value="indexMusic.xhtml">Music</option>
+                <option value="indexNew.xhtml">New</option>
+                <option value="indexScifi.xhtml">Scifi</option>
+                <option value="indexSports.xhtml">Sports</option>
+                <option value="indexTravel.xhtml">Travel</option>
+            <script type="text/javascript">
+                function la()
                 {
-                    if(src !== ""){
-                        window.location = src;
+                    var ddl = document.getElementById("CategoryDropdown");
+                    var link = ddl.value;
+                    if (link !== "") {
+                        window.location = link;
                     }
                 }
             </script>
+            </select>
+            <input id="selection-button" type="submit" onclick="la()"/>
+
+
+
             <h:form>
                 <h:commandLink action="#{filmController.previous}" value="Previous #{filmController.pageSize}" rendered="#{filmController.hasPreviousPage}"/> 
                 <h:commandLink action="#{filmController.next}" value="Next #{filmController.pageSize}" rendered="#{filmController.hasNextPage}"/>
@@ -79,7 +84,7 @@
                 </h:dataTable>
                 <br/>
             </h:form>
-
+            <a href="cart.jsp">Cart</a>
         </ui:define>
     </ui:composition>
 </html>
