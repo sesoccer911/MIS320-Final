@@ -1,4 +1,4 @@
-<title>LeatherLux (Demo Store)</title>
+<title>Blockbuster Store</title>
 
 <body bgcolor="FFFFFF" background="backgrounds/stripevertbg6.gif" topmargin="0" marginheight="0" leftmargin="0" marginwidth="0"> 
 <head>
