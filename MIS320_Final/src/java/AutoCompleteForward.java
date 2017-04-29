@@ -84,16 +84,25 @@ public class AutoCompleteForward extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
+    public Session initialize() {
+        Session sess = null;
+        try {
+            sess = HibernateUtil.getSessionFactory().getCurrentSession();
+        } catch (org.hibernate.HibernateException he) {
+            sess = HibernateUtil.getSessionFactory().openSession();
+        }
+        return sess;
+    }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         System.out.println(request.getParameter("film"));
         String idS = request.getParameter("film");
         Film film = null;
         try {
-            session = HibernateUtil.getSessionFactory().getCurrentSession();
+            session = initialize();
             org.hibernate.Transaction tx = session.beginTransaction();
-            Query q = session.createQuery("from Film as film where film.title = \"" + idS + "\"");
+            Query q = session.createQuery("from Film as film where film.title = '" + idS + "'");
             film = (Film) q.uniqueResult();
             tx.commit();
             tx = null;
@@ -104,7 +113,7 @@ public class AutoCompleteForward extends HttpServlet {
         int langID = film.getLanguageByLanguageId().getLanguageId().intValue();
         Language language = null;
         try {
-            session = HibernateUtil.getSessionFactory().getCurrentSession();
+            session = initialize();
             org.hibernate.Transaction tx = session.beginTransaction();
             Query q = session.createQuery("from Language as lang where lang.languageId=" + langID);
             language = (Language) q.uniqueResult();
@@ -117,7 +126,7 @@ public class AutoCompleteForward extends HttpServlet {
         String lang = language.getName();
         List<Actor> actorList = null;
         try {
-            session = HibernateUtil.getSessionFactory().getCurrentSession();
+            session = initialize();
             org.hibernate.Transaction tx = session.beginTransaction();
             Query q = session.createQuery("from Actor as actor where actor.actorId in (select filmActor.actor.actorId from FilmActor as filmActor where filmActor.film.filmId='" + film.getFilmId() + "')");
             actorList = (List<Actor>) q.list();
@@ -136,7 +145,7 @@ public class AutoCompleteForward extends HttpServlet {
         }
         List<Category> categoryList = null;
         try {
-            session = HibernateUtil.getSessionFactory().getCurrentSession();
+            session = initialize();
             org.hibernate.Transaction tx = session.beginTransaction();
             Query q = session.createQuery("from Category as category where category.categoryId in (select filmCat.category.categoryId from FilmCategory as filmCat where filmCat.film.filmId='" + film.getFilmId() + "')");
             categoryList = (List<Category>) q.list();
