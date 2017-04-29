@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="resources/css/cssLayout.css">
         <link rel="stylesheet" href="resources/css/styles.css">
         <link rel="stylesheet" href="resources/css/default.css"
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+              <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Search Result</title>
     </head>
     <top/>
@@ -23,45 +23,46 @@
             <tr>
                 <td>Title:</td> <td><c:out value="${title}"/></td>
             </tr>
-                        <tr>
+            <tr>
                 <td>Description::</td> <td><c:out value="${description}"/></td>
             </tr>
-                        <tr>
+            <tr>
                 <td>Genre:</td> <td><c:out value="${genres}"/></td>
             </tr>
-                        <tr>
+            <tr>
                 <td>Cast:</td> <td><c:out value="${actors}"/></td>
             </tr>
-                        <tr>
+            <tr>
                 <td>Film Length:</td> <td><c:out value="${length}"/> min</td>
             </tr>
-                        <tr>
+            <tr>
                 <td>Language:</td> <td><c:out value="${language}"/></td>
             </tr>
-                        <tr>
+            <tr>
                 <td>Title:</td> <td><c:out value="${title}"/></td>
             </tr>
-                        <tr>
+            <tr>
                 <td>Release Year:</td> <td><c:out value="${releaseYear}"/></td>
             </tr>
-                        <tr>
+            <tr>
                 <td>Rental Duration:</td> <td><c:out value="${rentalDuration}"/></td>
             </tr>
-                        <tr>
+            <tr>
                 <td>Rental Rate:</td> <td><c:out value="${rentalRate}"/></td>
             </tr>
-                        <tr>
+            <tr>
                 <td>Replacement Cost:</td> <td><c:out value="${replacementCost}"/></td>
             </tr>
-                        <tr>
+            <tr>
                 <td>Rating:</td> <td><c:out value="${rating}"/></td>
             </tr>
-                        <tr>
+            <tr>
                 <td>Special Features:</td> <td><c:out value="${specialFeatures}"/></td>
             </tr>
-                        <tr>
+            <tr>
                 <td>Last Update:</td> <td><c:out value="${lastUpdate}"/></td>
             </tr>
         </table>
+        <a href="index.xhtml">View All List</a>
     </body>
 </html>
