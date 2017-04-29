@@ -64,6 +64,7 @@ public class FilmController implements Serializable {
     }
 
     public DataModel getFilmTitles() {
+        recreateModel();
         if (filmTitles == null) {
             filmTitles = new ListDataModel(helper.getFilmTitles(startId, endId));
         }
@@ -71,8 +72,129 @@ public class FilmController implements Serializable {
     }
 
     public DataModel getFilmTitlesByAction() {
+        recreateModel();
         if (filmTitles == null) {
             filmTitles = new ListDataModel(helper.getFilmTitlesByCat(1));
+        }
+        return filmTitles;
+    }
+
+    public DataModel getFilmTitlesByAnimation() {
+        recreateModel();
+        if (filmTitles == null) {
+            filmTitles = new ListDataModel(helper.getFilmTitlesByCat(2));
+        }
+        return filmTitles;
+    }
+
+    public DataModel getFilmTitlesByChildren() {
+        recreateModel();
+        if (filmTitles == null) {
+            filmTitles = new ListDataModel(helper.getFilmTitlesByCat(3));
+        }
+        return filmTitles;
+    }
+
+    public DataModel getFilmTitlesByClassics() {
+        recreateModel();
+        if (filmTitles == null) {
+            filmTitles = new ListDataModel(helper.getFilmTitlesByCat(4));
+        }
+        return filmTitles;
+    }
+
+    public DataModel getFilmTitlesByComedy() {
+        recreateModel();
+        if (filmTitles == null) {
+            filmTitles = new ListDataModel(helper.getFilmTitlesByCat(5));
+        }
+        return filmTitles;
+    }
+
+    public DataModel getFilmTitlesByDocumentary() {
+        recreateModel();
+        if (filmTitles == null) {
+            filmTitles = new ListDataModel(helper.getFilmTitlesByCat(6));
+        }
+        return filmTitles;
+    }
+
+    public DataModel getFilmTitlesByDrama() {
+        recreateModel();
+        if (filmTitles == null) {
+            filmTitles = new ListDataModel(helper.getFilmTitlesByCat(7));
+        }
+        return filmTitles;
+    }
+
+    public DataModel getFilmTitlesByFamily() {
+        recreateModel();
+        if (filmTitles == null) {
+            filmTitles = new ListDataModel(helper.getFilmTitlesByCat(8));
+        }
+        return filmTitles;
+    }
+
+    public DataModel getFilmTitlesByForeign() {
+        recreateModel();
+        if (filmTitles == null) {
+            filmTitles = new ListDataModel(helper.getFilmTitlesByCat(9));
+        }
+        return filmTitles;
+    }
+
+    public DataModel getFilmTitlesByGames() {
+        recreateModel();
+        if (filmTitles == null) {
+            filmTitles = new ListDataModel(helper.getFilmTitlesByCat(10));
+        }
+        return filmTitles;
+    }
+
+    public DataModel getFilmTitlesByHorror() {
+        recreateModel();
+        if (filmTitles == null) {
+            filmTitles = new ListDataModel(helper.getFilmTitlesByCat(11));
+        }
+        return filmTitles;
+    }
+
+    public DataModel getFilmTitlesByMusic() {
+        recreateModel();
+        if (filmTitles == null) {
+            filmTitles = new ListDataModel(helper.getFilmTitlesByCat(12));
+        }
+        return filmTitles;
+    }
+
+    public DataModel getFilmTitlesByNew() {
+        recreateModel();
+        if (filmTitles == null) {
+            filmTitles = new ListDataModel(helper.getFilmTitlesByCat(13));
+        }
+        return filmTitles;
+    }
+
+    public DataModel getFilmTitlesByScifi() {
+        recreateModel();
+        if (filmTitles == null) {
+            filmTitles = new ListDataModel(helper.getFilmTitlesByCat(14));
+        }
+        return filmTitles;
+    }
+
+    public DataModel getFilmTitlesBySports() {
+        recreateModel();
+        if (filmTitles == null) {
+            filmTitles = new ListDataModel(helper.getFilmTitlesByCat(15));
+        }
+        return filmTitles;
+    }
+
+    public DataModel getFilmTitlesByTravel() {
+        recreateModel();
+        if (filmTitles == null) {
+            filmTitles = new ListDataModel(helper.getFilmTitlesByCat(16));
         }
         return filmTitles;
     }

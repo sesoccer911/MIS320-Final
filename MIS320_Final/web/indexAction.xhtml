@@ -23,9 +23,9 @@
                     <div id="selection-ajax" name="selection-ajax" type="hidden"></div>
                 </div>
             </form>
-   
-                <select name="CategoryDropdown" onselect="la(this.value)">
+                            <select name="CategoryDropdown" onselect="la(this.value)">
                     <option value="">Please choose a category</option>
+                    <option value="index.xhtml">All</option>
                     <option value="indexAction.xhtml">Action</option>
                     <option value="indexAnimation.xhtml">Animation</option>
                     <option value="indexChildren.xhtml">Children</option>
@@ -54,10 +54,7 @@
                 }
             </script>
             <h:form>
-                <h:commandLink action="#{filmController.previous}" value="Previous #{filmController.pageSize}" rendered="#{filmController.hasPreviousPage}"/> 
-                <h:commandLink action="#{filmController.next}" value="Next #{filmController.pageSize}" rendered="#{filmController.hasNextPage}"/>
-
-                <h:dataTable value="#{filmController.filmTitles}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                <h:dataTable value="#{filmController.filmTitlesByAction}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Title"/>
