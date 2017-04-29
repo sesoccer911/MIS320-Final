@@ -1,5 +1,5 @@
 package dvdrental;
-// Generated Mar 31, 2017 11:53:24 AM by Hibernate Tools 4.3.1
+// Generated Apr 27, 2017 3:04:49 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;

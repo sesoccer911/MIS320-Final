@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 31, 2017 11:53:25 AM by Hibernate Tools 4.3.1 -->
+<!-- Generated Apr 27, 2017 3:05:22 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="dvdrental.Film" table="film" catalog="sakila" optimistic-lock="version">
         <id name="filmId" type="java.lang.Short">
@@ -44,17 +44,11 @@
         <property name="lastUpdate" type="timestamp">
             <column name="last_update" length="19" not-null="true" />
         </property>
-        <set name="filmActors" table="film_actor" inverse="true" lazy="true" fetch="select">
+        <set name="inventories" table="inventory" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="film_id" not-null="true" />
             </key>
-            <one-to-many class="dvdrental.FilmActor" />
-        </set>
-        <set name="filmCategories" table="film_category" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="film_id" not-null="true" />
-            </key>
-            <one-to-many class="dvdrental.FilmCategory" />
+            <one-to-many class="dvdrental.Inventory" />
         </set>
     </class>
 </hibernate-mapping>

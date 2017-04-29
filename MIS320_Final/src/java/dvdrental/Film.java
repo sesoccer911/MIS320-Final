@@ -1,5 +1,5 @@
 package dvdrental;
-// Generated Mar 31, 2017 11:53:24 AM by Hibernate Tools 4.3.1
+// Generated Apr 27, 2017 3:04:49 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -26,8 +26,7 @@ public class Film  implements java.io.Serializable {
      private String rating;
      private String specialFeatures;
      private Date lastUpdate;
-     private Set<FilmActor> filmActors = new HashSet<FilmActor>(0);
-     private Set<FilmCategory> filmCategories = new HashSet<FilmCategory>(0);
+     private Set<Inventory> inventories = new HashSet<Inventory>(0);
 
     public Film() {
     }
@@ -41,7 +40,7 @@ public class Film  implements java.io.Serializable {
         this.replacementCost = replacementCost;
         this.lastUpdate = lastUpdate;
     }
-    public Film(Language languageByLanguageId, Language languageByOriginalLanguageId, String title, String description, Date releaseYear, byte rentalDuration, BigDecimal rentalRate, Short length, BigDecimal replacementCost, String rating, String specialFeatures, Date lastUpdate, Set<FilmActor> filmActors, Set<FilmCategory> filmCategories) {
+    public Film(Language languageByLanguageId, Language languageByOriginalLanguageId, String title, String description, Date releaseYear, byte rentalDuration, BigDecimal rentalRate, Short length, BigDecimal replacementCost, String rating, String specialFeatures, Date lastUpdate, Set<Inventory> inventories) {
        this.languageByLanguageId = languageByLanguageId;
        this.languageByOriginalLanguageId = languageByOriginalLanguageId;
        this.title = title;
@@ -54,8 +53,7 @@ public class Film  implements java.io.Serializable {
        this.rating = rating;
        this.specialFeatures = specialFeatures;
        this.lastUpdate = lastUpdate;
-       this.filmActors = filmActors;
-       this.filmCategories = filmCategories;
+       this.inventories = inventories;
     }
    
     public Short getFilmId() {
@@ -149,19 +147,12 @@ public class Film  implements java.io.Serializable {
     public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
-    public Set<FilmActor> getFilmActors() {
-        return this.filmActors;
+    public Set<Inventory> getInventories() {
+        return this.inventories;
     }
     
-    public void setFilmActors(Set<FilmActor> filmActors) {
-        this.filmActors = filmActors;
-    }
-    public Set<FilmCategory> getFilmCategories() {
-        return this.filmCategories;
-    }
-    
-    public void setFilmCategories(Set<FilmCategory> filmCategories) {
-        this.filmCategories = filmCategories;
+    public void setInventories(Set<Inventory> inventories) {
+        this.inventories = inventories;
     }
 
 
