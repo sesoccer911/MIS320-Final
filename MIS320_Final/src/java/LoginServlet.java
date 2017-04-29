@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.hibernate.Session;
 
 /**
  *
@@ -23,11 +24,9 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-
+    Session session;
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         try {
@@ -38,14 +37,15 @@ public class LoginServlet extends HttpServlet {
             pst.setString(2, password);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
-                response.sendRedirect("faces/index.xhtml");
+                response.sendRedirect("index.xhtml");
             } else {
-                out.println("Incorrect login credentials");
+                request.getRequestDispatcher("login.jsp").forward(request, response);
+                //out.println("Incorrect login credentials");
 
             }
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-            out.println("Database Connection Not Established");
+            //out.println("Database Connection Not Established");
         }
     }
 }
