@@ -1,12 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core">
 
+
     <ui:composition template="template.xhtml">
-        <ui:define name="top">Welcome to the Movie Browser></ui:define>
+        <ui:define name="top">Welcome to the Movie Browser<textarea id="output"></textarea></ui:define>
         <ui:define name="body">
 
             <script type="text/javascript" src="resources/scripts/jquery-1.8.2.min.js"></script>
@@ -43,16 +45,21 @@
                 <option value="indexScifi.xhtml">Scifi</option>
                 <option value="indexSports.xhtml">Sports</option>
                 <option value="indexTravel.xhtml">Travel</option>
-            <script type="text/javascript">
-                function la()
-                {
-                    var ddl = document.getElementById("CategoryDropdown");
-                    var link = ddl.value;
-                    if (link !== "") {
-                        window.location = link;
+                <script type="text/javascript">
+                    function la()
+                    {
+                        var ddl = document.getElementById("CategoryDropdown");
+                        var link = ddl.value;
+                        if (link !== "") {
+                            window.location = link;
+                        }
                     }
-                }
-            </script>
+                    /*jslint sub: true, maxerr: 50, indent: 4, browser: true */
+
+                    (function (global) {
+                        document.getElementById("output").value = global.localStorage.getItem("mySharedData");
+                    }(window));
+                </script>
             </select>
             <input id="selection-button" type="submit" onclick="la()"/>
 

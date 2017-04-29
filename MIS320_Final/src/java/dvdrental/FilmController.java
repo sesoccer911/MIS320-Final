@@ -64,7 +64,6 @@ public class FilmController implements Serializable {
     }
 
     public DataModel getFilmTitles() {
-        recreateModel();
         if (filmTitles == null) {
             filmTitles = new ListDataModel(helper.getFilmTitles(startId, endId));
         }
@@ -238,6 +237,7 @@ public class FilmController implements Serializable {
     }
 
     public String prepareView() {
+        current = null;
         current = (Film) getFilmTitles().getRowData();
         return "browse";
     }

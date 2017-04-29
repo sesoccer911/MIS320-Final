@@ -23,7 +23,7 @@
                     <div id="selection-ajax" name="selection-ajax" type="hidden"></div>
                 </div>
             </form>
-                            <select name="CategoryDropdown" onselect="la(this.value)">
+                           <select id="CategoryDropdown" name="CategoryDropdown">
                     <option value="">Please choose a category</option>
                     <option value="index.xhtml">All</option>
                     <option value="indexAction.xhtml">Action</option>
@@ -42,17 +42,19 @@
                     <option value="indexScifi.xhtml">Scifi</option>
                     <option value="indexSports.xhtml">Sports</option>
                     <option value="indexTravel.xhtml">Travel</option>
-                </select>
-                <input id="selection-button" type="submit" onclick="la(CategoryDropdown.value)"/>
-
-            <script>
-                function la(src)
+                
+            <script type="text/javascript">
+                function la()
                 {
-                    if(src !== ""){
-                        window.location = src;
+                    var ddl = document.getElementById("CategoryDropdown");
+                    var link = ddl.value;
+                    if (link !== "") {
+                        window.location = link;
                     }
                 }
             </script>
+            </select>
+            <input id="selection-button" type="submit" onclick="la()"/>
             <h:form>
                 
 

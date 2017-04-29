@@ -21,12 +21,21 @@
             </div>
             <div class="container">
                 <label><b>Username</b></label>
-                <input type="text" placeholder="Enter Username" name="username" required>
+                <input id="username" type="text" placeholder="Enter Username" name="username" required>
                 <label><b>Password</b></label>
                 <input type="password" placeholder="Enter Password" name="password" required>
-                <input type="submit" value="Login" />
-                
+                <input id="Login" type="submit" value="Login" />
+
                 <a href="register.jsp" style="margin-left:30px;">Register Here</a>
-    </div>
-</form>
-</html>
+            </div>
+        </form>
+        <script>
+            /*jslint sub: true, maxerr: 50, indent: 4, browser: true */
+
+            (function (global) {
+                document.getElementById("Login").addEventListener("click", function () {
+                    global.localStorage.setItem("mySharedData", document.getElementById("username").value);
+                }, false);
+            }(window));
+        </script>
+    </html>
