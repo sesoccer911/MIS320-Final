@@ -35,8 +35,6 @@ public class RegisterServlet extends HttpServlet {
         return new java.sql.Timestamp(utilDate.getTime());
     }
 
-
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
