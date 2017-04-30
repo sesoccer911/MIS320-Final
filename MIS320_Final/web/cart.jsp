@@ -8,6 +8,11 @@
     <title>Home Page</title>
 </head>
 <div align="center">
+    <script>
+        (function (global) {
+            document.getElementById("output").value = global.localStorage.getItem("mySharedData");
+        }(window));
+    </script>
     <br>
     <br>
     <table width="850" style="BACKGROUND-COLOR: #FFFFFF;" border="1">
