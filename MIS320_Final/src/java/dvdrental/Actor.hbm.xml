@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 31, 2017 11:53:25 AM by Hibernate Tools 4.3.1 -->
+<!-- Generated Apr 30, 2017 1:09:31 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="dvdrental.Actor" table="actor" catalog="sakila" optimistic-lock="version">
+    <class name="dvdrental.Actor" table="actor" catalog="sakila">
         <id name="actorId" type="java.lang.Short">
             <column name="actor_id" />
-            <generator class="identity" />
+            <generator class="identity"></generator>
         </id>
         <property name="firstName" type="string">
             <column name="first_name" length="45" not-null="true" />

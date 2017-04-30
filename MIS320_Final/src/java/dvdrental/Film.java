@@ -1,5 +1,5 @@
 package dvdrental;
-// Generated Apr 27, 2017 3:04:49 PM by Hibernate Tools 4.3.1
+// Generated Apr 30, 2017 1:09:30 AM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -26,7 +26,7 @@ public class Film  implements java.io.Serializable {
      private String rating;
      private String specialFeatures;
      private Date lastUpdate;
-     private Set<Inventory> inventories = new HashSet<Inventory>(0);
+     private Set inventories = new HashSet(0);
 
     public Film() {
     }
@@ -40,7 +40,7 @@ public class Film  implements java.io.Serializable {
         this.replacementCost = replacementCost;
         this.lastUpdate = lastUpdate;
     }
-    public Film(Language languageByLanguageId, Language languageByOriginalLanguageId, String title, String description, Date releaseYear, byte rentalDuration, BigDecimal rentalRate, Short length, BigDecimal replacementCost, String rating, String specialFeatures, Date lastUpdate, Set<Inventory> inventories) {
+    public Film(Language languageByLanguageId, Language languageByOriginalLanguageId, String title, String description, Date releaseYear, byte rentalDuration, BigDecimal rentalRate, Short length, BigDecimal replacementCost, String rating, String specialFeatures, Date lastUpdate, Set inventories) {
        this.languageByLanguageId = languageByLanguageId;
        this.languageByOriginalLanguageId = languageByOriginalLanguageId;
        this.title = title;
@@ -147,11 +147,11 @@ public class Film  implements java.io.Serializable {
     public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
-    public Set<Inventory> getInventories() {
+    public Set getInventories() {
         return this.inventories;
     }
     
-    public void setInventories(Set<Inventory> inventories) {
+    public void setInventories(Set inventories) {
         this.inventories = inventories;
     }
 

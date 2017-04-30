@@ -51,7 +51,20 @@ public class FilmHelper {
         }
         return filmList;
     }
-
+    public boolean addFilmToCart(Film add){
+        try {
+            session = init();
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createQuery("insert into cartofitems(film_id) VALUES(" + add.getFilmId() + ")");
+            q.executeUpdate();
+            tx.commit();
+            tx = null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
     public List getFilmTitlesByCat(int catID) {
         List<Film> filmList = null;
         try {

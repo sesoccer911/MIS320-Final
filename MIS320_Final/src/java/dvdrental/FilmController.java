@@ -10,6 +10,8 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import org.hibernate.Session;
@@ -240,6 +242,19 @@ public class FilmController implements Serializable {
         current = null;
         current = (Film) getFilmTitles().getRowData();
         return "browse";
+    }
+
+    public void addToCart() {
+        current = (Film) getFilmTitles().getRowData();
+        boolean test = helper.addFilmToCart(current);
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        try{
+        externalContext.redirect("cart.jsp");
+    }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     public String prepareJSView() {

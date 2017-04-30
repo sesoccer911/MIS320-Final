@@ -1,5 +1,5 @@
 package dvdrental;
-// Generated Apr 27, 2017 3:04:49 PM by Hibernate Tools 4.3.1
+// Generated Apr 30, 2017 1:09:30 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -16,9 +16,9 @@ public class Store  implements java.io.Serializable {
      private Address address;
      private Staff staff;
      private Date lastUpdate;
-     private Set<Staff> staffs = new HashSet<Staff>(0);
-     private Set<Inventory> inventories = new HashSet<Inventory>(0);
-     private Set<Customer> customers = new HashSet<Customer>(0);
+     private Set staffs = new HashSet(0);
+     private Set inventories = new HashSet(0);
+     private Set customers = new HashSet(0);
 
     public Store() {
     }
@@ -29,7 +29,7 @@ public class Store  implements java.io.Serializable {
         this.staff = staff;
         this.lastUpdate = lastUpdate;
     }
-    public Store(Address address, Staff staff, Date lastUpdate, Set<Staff> staffs, Set<Inventory> inventories, Set<Customer> customers) {
+    public Store(Address address, Staff staff, Date lastUpdate, Set staffs, Set inventories, Set customers) {
        this.address = address;
        this.staff = staff;
        this.lastUpdate = lastUpdate;
@@ -66,25 +66,25 @@ public class Store  implements java.io.Serializable {
     public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
-    public Set<Staff> getStaffs() {
+    public Set getStaffs() {
         return this.staffs;
     }
     
-    public void setStaffs(Set<Staff> staffs) {
+    public void setStaffs(Set staffs) {
         this.staffs = staffs;
     }
-    public Set<Inventory> getInventories() {
+    public Set getInventories() {
         return this.inventories;
     }
     
-    public void setInventories(Set<Inventory> inventories) {
+    public void setInventories(Set inventories) {
         this.inventories = inventories;
     }
-    public Set<Customer> getCustomers() {
+    public Set getCustomers() {
         return this.customers;
     }
     
-    public void setCustomers(Set<Customer> customers) {
+    public void setCustomers(Set customers) {
         this.customers = customers;
     }
 

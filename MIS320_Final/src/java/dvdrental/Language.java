@@ -1,5 +1,5 @@
 package dvdrental;
-// Generated Apr 27, 2017 3:04:49 PM by Hibernate Tools 4.3.1
+// Generated Apr 30, 2017 1:09:30 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -15,8 +15,8 @@ public class Language  implements java.io.Serializable {
      private Byte languageId;
      private String name;
      private Date lastUpdate;
-     private Set<Film> filmsForLanguageId = new HashSet<Film>(0);
-     private Set<Film> filmsForOriginalLanguageId = new HashSet<Film>(0);
+     private Set filmsForLanguageId = new HashSet(0);
+     private Set filmsForOriginalLanguageId = new HashSet(0);
 
     public Language() {
     }
@@ -26,7 +26,7 @@ public class Language  implements java.io.Serializable {
         this.name = name;
         this.lastUpdate = lastUpdate;
     }
-    public Language(String name, Date lastUpdate, Set<Film> filmsForLanguageId, Set<Film> filmsForOriginalLanguageId) {
+    public Language(String name, Date lastUpdate, Set filmsForLanguageId, Set filmsForOriginalLanguageId) {
        this.name = name;
        this.lastUpdate = lastUpdate;
        this.filmsForLanguageId = filmsForLanguageId;
@@ -54,18 +54,18 @@ public class Language  implements java.io.Serializable {
     public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
-    public Set<Film> getFilmsForLanguageId() {
+    public Set getFilmsForLanguageId() {
         return this.filmsForLanguageId;
     }
     
-    public void setFilmsForLanguageId(Set<Film> filmsForLanguageId) {
+    public void setFilmsForLanguageId(Set filmsForLanguageId) {
         this.filmsForLanguageId = filmsForLanguageId;
     }
-    public Set<Film> getFilmsForOriginalLanguageId() {
+    public Set getFilmsForOriginalLanguageId() {
         return this.filmsForOriginalLanguageId;
     }
     
-    public void setFilmsForOriginalLanguageId(Set<Film> filmsForOriginalLanguageId) {
+    public void setFilmsForOriginalLanguageId(Set filmsForOriginalLanguageId) {
         this.filmsForOriginalLanguageId = filmsForOriginalLanguageId;
     }
 

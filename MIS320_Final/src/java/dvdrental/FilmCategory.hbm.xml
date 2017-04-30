@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 31, 2017 11:53:25 AM by Hibernate Tools 4.3.1 -->
+<!-- Generated Apr 30, 2017 1:09:31 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="dvdrental.FilmCategory" table="film_category" catalog="sakila" optimistic-lock="version">
+    <class name="dvdrental.FilmCategory" table="film_category" catalog="sakila">
         <composite-id name="id" class="dvdrental.FilmCategoryId">
             <key-property name="filmId" type="short">
                 <column name="film_id" />

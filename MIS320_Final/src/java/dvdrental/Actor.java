@@ -1,5 +1,5 @@
 package dvdrental;
-// Generated Mar 31, 2017 11:53:24 AM by Hibernate Tools 4.3.1
+// Generated Apr 30, 2017 1:09:30 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -16,7 +16,7 @@ public class Actor  implements java.io.Serializable {
      private String firstName;
      private String lastName;
      private Date lastUpdate;
-     private Set<FilmActor> filmActors = new HashSet<FilmActor>(0);
+     private Set filmActors = new HashSet(0);
 
     public Actor() {
     }
@@ -27,7 +27,7 @@ public class Actor  implements java.io.Serializable {
         this.lastName = lastName;
         this.lastUpdate = lastUpdate;
     }
-    public Actor(String firstName, String lastName, Date lastUpdate, Set<FilmActor> filmActors) {
+    public Actor(String firstName, String lastName, Date lastUpdate, Set filmActors) {
        this.firstName = firstName;
        this.lastName = lastName;
        this.lastUpdate = lastUpdate;
@@ -62,11 +62,11 @@ public class Actor  implements java.io.Serializable {
     public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
-    public Set<FilmActor> getFilmActors() {
+    public Set getFilmActors() {
         return this.filmActors;
     }
     
-    public void setFilmActors(Set<FilmActor> filmActors) {
+    public void setFilmActors(Set filmActors) {
         this.filmActors = filmActors;
     }
 
