@@ -23,13 +23,13 @@ public class CustomerHelper
     }
     
     // method to retrieve customers by customerId
-    public Customer getCustomersByID(short customerId){
-    Customer customer = null;
+    public List getCustomersByID(short customerId){
+    List<Customer> customer = null;
     try {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         org.hibernate.Transaction tx = session.beginTransaction();
         Query q = session.createQuery ("from Customer as customer where customer.customerId=" + customerId);
-        customer = (Customer) q.uniqueResult();
+        customer = (List<Customer>) q.uniqueResult();
         tx.commit();
         tx = null;
 
@@ -71,4 +71,21 @@ public class CustomerHelper
 
     return rentalList.get(0);
     }
+    
+//    public WishList getWishListByID(short customerId){
+//    List<WishList> wishList = null;
+//    try{
+//        org.hibernate.Transaction tx = session.beginTransaction();
+//        Query q = session.createQuery("from Wishlist as wishlist where wishlist.customerId=" +customerId);
+//        wishList = (List<WishList>) q.list();
+//        
+//    } catch (Exception e){
+//        e.printStackTrace();
+//    }
+//    
+//     return wishList.get(0);
+//}
+    
+    
+    
 }

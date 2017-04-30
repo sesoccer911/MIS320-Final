@@ -8,7 +8,11 @@ package dvdrental;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.List;
+import javax.faces.bean.ManagedBean;
 import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
+import org.hibernate.Session;
 
 /**
  *
@@ -42,6 +46,41 @@ public class CustomerController implements Serializable
         }
         return current;
     }
+     
+     public DataModel getCustomersByID() {
+        if (CustomerInfo == null) {
+            CustomerInfo = new ListDataModel(helper.getCustomersByID(customerId));
+        }
+        return CustomerInfo;
+    }
+
+    void recreateModel() {
+        CustomerInfo = null;
+    }
     
     // Retrieves details about the customer
+    public Payment getPayment() {
+        //int paymentID = current.getPaymentsByPaymentId().getPaymentId().intValue();
+        Payment payment = helper.getPaymentbyID(customerId);
+        return payment;
+    }
+    
+    public String getRental(){
+    List rentals = (List) helper.getRentalByID(current.getCustomerId());
+    StringBuffer rentalHistory = new StringBuffer();
+    for (int i = 0; i < rentals.size(); i++) {
+            Rental rental = (Rental) rentals.get(i);   
+        }
+    return rentalHistory.toString();
+    }
+    
+/*    public WishList getWishList(){
+      List wishlist = (List) helper.getWishListbyID(current.getCustomerId());
+    StringBuffer wishList = new StringBuffer();
+    for int i = 0; i < wishlist.size(); i++){
+            WishList wishlist = (WishList) wishlist.get(i);
+    }
+    return wishList.toString();
+    }
+*/    
 }
