@@ -1,5 +1,5 @@
 package dvdrental;
-// Generated Apr 27, 2017 3:04:49 PM by Hibernate Tools 4.3.1
+// Generated Apr 30, 2017 1:09:30 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -21,9 +21,9 @@ public class Address  implements java.io.Serializable {
      private String phone;
      private byte[] location;
      private Date lastUpdate;
-     private Set<Staff> staffs = new HashSet<Staff>(0);
-     private Set<Customer> customers = new HashSet<Customer>(0);
-     private Set<Store> stores = new HashSet<Store>(0);
+     private Set staffs = new HashSet(0);
+     private Set customers = new HashSet(0);
+     private Set stores = new HashSet(0);
 
     public Address() {
     }
@@ -37,7 +37,7 @@ public class Address  implements java.io.Serializable {
         this.location = location;
         this.lastUpdate = lastUpdate;
     }
-    public Address(City city, String address, String address2, String district, String postalCode, String phone, byte[] location, Date lastUpdate, Set<Staff> staffs, Set<Customer> customers, Set<Store> stores) {
+    public Address(City city, String address, String address2, String district, String postalCode, String phone, byte[] location, Date lastUpdate, Set staffs, Set customers, Set stores) {
        this.city = city;
        this.address = address;
        this.address2 = address2;
@@ -114,25 +114,25 @@ public class Address  implements java.io.Serializable {
     public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
-    public Set<Staff> getStaffs() {
+    public Set getStaffs() {
         return this.staffs;
     }
     
-    public void setStaffs(Set<Staff> staffs) {
+    public void setStaffs(Set staffs) {
         this.staffs = staffs;
     }
-    public Set<Customer> getCustomers() {
+    public Set getCustomers() {
         return this.customers;
     }
     
-    public void setCustomers(Set<Customer> customers) {
+    public void setCustomers(Set customers) {
         this.customers = customers;
     }
-    public Set<Store> getStores() {
+    public Set getStores() {
         return this.stores;
     }
     
-    public void setStores(Set<Store> stores) {
+    public void setStores(Set stores) {
         this.stores = stores;
     }
 

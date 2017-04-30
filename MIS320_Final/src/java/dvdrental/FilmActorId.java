@@ -1,5 +1,5 @@
 package dvdrental;
-// Generated Mar 31, 2017 11:53:24 AM by Hibernate Tools 4.3.1
+// Generated Apr 30, 2017 1:09:30 AM by Hibernate Tools 4.3.1
 
 
 
@@ -36,23 +36,6 @@ public class FilmActorId  implements java.io.Serializable {
     }
 
 
-   public boolean equals(Object other) {
-         if ( (this == other ) ) return true;
-		 if ( (other == null ) ) return false;
-		 if ( !(other instanceof FilmActorId) ) return false;
-		 FilmActorId castOther = ( FilmActorId ) other; 
-         
-		 return (this.getActorId()==castOther.getActorId())
- && (this.getFilmId()==castOther.getFilmId());
-   }
-   
-   public int hashCode() {
-         int result = 17;
-         
-         result = 37 * result + this.getActorId();
-         result = 37 * result + this.getFilmId();
-         return result;
-   }   
 
 
 }

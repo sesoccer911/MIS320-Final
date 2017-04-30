@@ -1,5 +1,5 @@
 package dvdrental;
-// Generated Apr 27, 2017 3:04:49 PM by Hibernate Tools 4.3.1
+// Generated Apr 30, 2017 1:09:30 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -15,7 +15,7 @@ public class Country  implements java.io.Serializable {
      private Short countryId;
      private String country;
      private Date lastUpdate;
-     private Set<City> cities = new HashSet<City>(0);
+     private Set cities = new HashSet(0);
 
     public Country() {
     }
@@ -25,7 +25,7 @@ public class Country  implements java.io.Serializable {
         this.country = country;
         this.lastUpdate = lastUpdate;
     }
-    public Country(String country, Date lastUpdate, Set<City> cities) {
+    public Country(String country, Date lastUpdate, Set cities) {
        this.country = country;
        this.lastUpdate = lastUpdate;
        this.cities = cities;
@@ -52,11 +52,11 @@ public class Country  implements java.io.Serializable {
     public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
-    public Set<City> getCities() {
+    public Set getCities() {
         return this.cities;
     }
     
-    public void setCities(Set<City> cities) {
+    public void setCities(Set cities) {
         this.cities = cities;
     }
 

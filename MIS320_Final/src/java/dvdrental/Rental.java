@@ -1,5 +1,5 @@
 package dvdrental;
-// Generated Apr 27, 2017 3:04:49 PM by Hibernate Tools 4.3.1
+// Generated Apr 30, 2017 1:09:30 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -19,7 +19,7 @@ public class Rental  implements java.io.Serializable {
      private Date rentalDate;
      private Date returnDate;
      private Date lastUpdate;
-     private Set<Payment> payments = new HashSet<Payment>(0);
+     private Set payments = new HashSet(0);
 
     public Rental() {
     }
@@ -32,7 +32,7 @@ public class Rental  implements java.io.Serializable {
         this.rentalDate = rentalDate;
         this.lastUpdate = lastUpdate;
     }
-    public Rental(Customer customer, Inventory inventory, Staff staff, Date rentalDate, Date returnDate, Date lastUpdate, Set<Payment> payments) {
+    public Rental(Customer customer, Inventory inventory, Staff staff, Date rentalDate, Date returnDate, Date lastUpdate, Set payments) {
        this.customer = customer;
        this.inventory = inventory;
        this.staff = staff;
@@ -91,11 +91,11 @@ public class Rental  implements java.io.Serializable {
     public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
-    public Set<Payment> getPayments() {
+    public Set getPayments() {
         return this.payments;
     }
     
-    public void setPayments(Set<Payment> payments) {
+    public void setPayments(Set payments) {
         this.payments = payments;
     }
 

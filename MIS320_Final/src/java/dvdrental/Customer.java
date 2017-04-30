@@ -1,5 +1,5 @@
 package dvdrental;
-// Generated Apr 27, 2017 3:04:49 PM by Hibernate Tools 4.3.1
+// Generated Apr 30, 2017 1:09:30 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -23,8 +23,8 @@ public class Customer  implements java.io.Serializable {
      private Date lastUpdate;
      private String username;
      private String password;
-     private Set<Payment> payments = new HashSet<Payment>(0);
-     private Set<Rental> rentals = new HashSet<Rental>(0);
+     private Set payments = new HashSet(0);
+     private Set rentals = new HashSet(0);
 
     public Customer() {
     }
@@ -40,7 +40,7 @@ public class Customer  implements java.io.Serializable {
         this.lastUpdate = lastUpdate;
         this.username = username;
     }
-    public Customer(Address address, Store store, String firstName, String lastName, String email, boolean active, Date createDate, Date lastUpdate, String username, String password, Set<Payment> payments, Set<Rental> rentals) {
+    public Customer(Address address, Store store, String firstName, String lastName, String email, boolean active, Date createDate, Date lastUpdate, String username, String password, Set payments, Set rentals) {
        this.address = address;
        this.store = store;
        this.firstName = firstName;
@@ -132,18 +132,18 @@ public class Customer  implements java.io.Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-    public Set<Payment> getPayments() {
+    public Set getPayments() {
         return this.payments;
     }
     
-    public void setPayments(Set<Payment> payments) {
+    public void setPayments(Set payments) {
         this.payments = payments;
     }
-    public Set<Rental> getRentals() {
+    public Set getRentals() {
         return this.rentals;
     }
     
-    public void setRentals(Set<Rental> rentals) {
+    public void setRentals(Set rentals) {
         this.rentals = rentals;
     }
 

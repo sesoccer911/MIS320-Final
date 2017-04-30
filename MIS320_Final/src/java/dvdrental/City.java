@@ -1,5 +1,5 @@
 package dvdrental;
-// Generated Apr 27, 2017 3:04:49 PM by Hibernate Tools 4.3.1
+// Generated Apr 30, 2017 1:09:30 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -16,7 +16,7 @@ public class City  implements java.io.Serializable {
      private Country country;
      private String city;
      private Date lastUpdate;
-     private Set<Address> addresses = new HashSet<Address>(0);
+     private Set addresses = new HashSet(0);
 
     public City() {
     }
@@ -27,7 +27,7 @@ public class City  implements java.io.Serializable {
         this.city = city;
         this.lastUpdate = lastUpdate;
     }
-    public City(Country country, String city, Date lastUpdate, Set<Address> addresses) {
+    public City(Country country, String city, Date lastUpdate, Set addresses) {
        this.country = country;
        this.city = city;
        this.lastUpdate = lastUpdate;
@@ -62,11 +62,11 @@ public class City  implements java.io.Serializable {
     public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
-    public Set<Address> getAddresses() {
+    public Set getAddresses() {
         return this.addresses;
     }
     
-    public void setAddresses(Set<Address> addresses) {
+    public void setAddresses(Set addresses) {
         this.addresses = addresses;
     }
 
