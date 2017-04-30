@@ -41,9 +41,9 @@ public class AccountServlet extends HttpServlet
             pst.setString(4, password);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
-                out.println("Correct login credentials");
+                out.println("Correct user credentials");
             } else {
-                out.println("Incorrect login credentials");
+                out.println("Incorrect user credentials");
 
             }
         } catch (ClassNotFoundException | SQLException e) {
