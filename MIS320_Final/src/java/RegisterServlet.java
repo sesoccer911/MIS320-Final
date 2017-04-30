@@ -82,10 +82,10 @@ public class RegisterServlet extends HttpServlet {
         }
                     if (userID != null) {
                 //session.setAttribute("userid", user);
-                //response.sendRedirect("welcome.jsp");
-                // out.print("Registration Successfull!"+"<a href='index.jsp'>Go to Login</a>");
+                //response.sendRedirect("login.jsp");
+                out.print("Registration Successfull!"+"<a href='login.jsp'>Go to Login</a>");
             } else {
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("login.jsp");
             }
     }
 }
