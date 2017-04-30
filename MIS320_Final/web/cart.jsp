@@ -22,49 +22,46 @@
     <body> 
         <br>
         <br>
-        <script>
-            (function (global) {
-                document.getElementById("output").value = global.localStorage.getItem("mySharedData");
-            }(window));
-        </script>
+        <input id="output"/>
+
         <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
                            url="jdbc:mysql://localhost:3306/sakila"
                            user="root"  password="nbuser"/>
-        <sql:query dataSource="${snapshot}" var="result">
-            Select F.title, (F.rental_rate * F.rental_duration) as 'Price'
+        <c:set var="username" value= "${sessionScope[output]}"/>
+        <sql:query dataSource="${snapshot}" var="username">
+            Select C.customer_id
+            from cart as C
+            join cartofitems as CI
+            on CI.cart_id = C.cart_id
+            join customer as CS
+            on CS.customer_id = C.customer_id
+            where username = ?
+            limit 1;
+            <sql:param value="${output}"/>
+        </sql:query>
+        <sql:query dataSource="${snapshot}" var="subtotal">
+            Select  sum(F.rental_rate * F.rental_duration)as Subtotal
             from cart as C
             join cartofitems as CI
             on CI.cart_id = C.cart_id
             join film as F
             on CI.film_id = F.film_id
         </sql:query>
+        <sql:query dataSource="${snapshot}" var="result">
+            Select F.title, (F.rental_rate * F.rental_duration) as Price, cartItem_id
+            from cart as C
+            join cartofitems as CI
+            on CI.cart_id = C.cart_id
+            join film as F
+            on CI.film_id = F.film_id
+        </sql:query>
+
         <div align="center">
-            <table width="850" style="BACKGROUND-COLOR: #FFFFFF;" border="1">
+            <table width="850" border="1">
                 <tr>
                     <td align="center">
                         <img src="images/cart.png">
                     </td>
-                </tr>
-                <tr>
-                    <td align="center" colspan="3">
-                        <table width="650">
-                            <tr>
-                                <td>
-                                    <div align="justify" style="color:#3e160e;">
-                                        This is a custom HTML header.  This header may contain any HTML code, text,
-                                        graphics, active content such as dropdown menus, java, javascript, or other
-                                        content that you would like to display at the top of your cart pages.  You create
-                                        custom HTML header yourself and specify its location in the CustomCart Administrator.
-                                        Also note the custom wallpaper (brown striped background), this is uploaded via the
-                                        administrator.  You may change the wallpaper any time you wish to change the look of
-                                        your cart.
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                <tr>
-                <tr>
                 </tr>
             </table>
         </div> 
@@ -72,52 +69,46 @@
             <form action="checkout.jsp" method="post" border="">
                 <table width="850" border="1" class="cart">
                     <thead>
-                        <tr>
-                            <th>Action</th>
-                            <th>Movie Title</th>
-                            <th>Price</th>
-                        </tr>
+                    <tr>
+                        <th>Action</th>
+                        <th>Movie Title</th>
+                        <th>Price</th>
+                    </tr>
                     </thead>
                     <tbody>
                         <c:forEach items="${result.rows}" var="cart">
                             <tr>
-                                <td><a href="CartServlet?action=delete&orderNum=<c:out value="${product.orderNum}"/>">Delete</a></td>
+                                <td><a href="CartServlet?action=delete&cartItem_id=<c:out value="${cart.cartItem_id}"/>">Delete</a></td>
                                 <td><c:out value="${cart.title}" /></td>
                                 <td class="price"><c:out value="${cart.Price}" /></td>
                             </tr>
                         </c:forEach>
                         <tr class="totalColumn">
-                            <td bgcolor="ffffff" colspan="2" align="right" ><b>Subtotal: </b></td>
-                            <td bgcolor="ffffff" align="right" ><b><span id="subtotal"></span></b></td>
-                    <script language="javascript" type="text/javascript">
-                        var tds = document.getElementById('cart').getElementsByTagName('td');
-                        var sum = 0;
-                        for (var i = 0; i < tds.length; i++) {
-                            if (tds[i].className == 'price') {
-                                sum += isNaN(tds[i].innerHTML) ? 0 : parseInt(tds[i].innerHTML);
-                            }
-                        }
-                        document.getElementById('price').innerHTML += '<tr><td>' + sum + '</td><td>total</td></tr>';
-                    </script>
+                            <td  colspan="2" align="right" ><b>Subtotal: </b></td>
+                    <form action="checkout.jsp" method="post" border="">
+                        <c:forEach items="${subtotal.rows}" var="subtotal">
+                            <td class="price"><c:out value="${subtotal.Subtotal}" /></td>
+                        </c:forEach>
 
-                    </tr>
-                    </tbody>
+                        </tr>
+                        </tbody>
                 </table>
                 <table width="850" border="1">
                     <tr>
                     <div style="width:650px;">
-
-                        <button type="submit" name="your_name" value="totalCost" class="loginbtn">Checkout Cart</button>
+                        <button type="submit" name="your_name" value="Subtotal" class="loginbtn">Checkout Cart</button>
                         </form>
                         <p><form action="faces/index.xhtml" method="post">
                             <button type="submit" name="your_name" value="your_value" class="adminloginbtn">Back To Search</button>
                         </form>
-
                     </div>
                     </tr>
                     </tbody>
                 </table>
-
+                <script type="text/javascript">
+                    (function (global) {
+                        document.getElementById("output").value = global.localStorage.getItem("mySharedData");
+                    }(window));
+                </script>
                 </body>
-
                 </html>
