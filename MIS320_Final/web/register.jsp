@@ -16,10 +16,7 @@
     <body>
         <form method="post" action="RegisterServlet"
               onsubmit="return checkform(this);">
-
             <div class="container">
-
-
                 <label><b>First Name</b></label>
                 <input type="text" placeholder="Enter First Name" name="fName" required>
 
@@ -57,57 +54,62 @@
                 </div>
                 <br><br>
                 <!-- END CAPTCHA -->
-
-                <button type="button"  class="cancelbtn">Cancel</button>
                 <button type="submit" class="loginbtn">Sign Up</button>
             </div>
         </form>
-        <script type="text/javascript">
+        <div class="button-container">
+            <form method="get" action="login.jsp">
+                <div>
+                    <button type="submit"class="cancelbtn">Cancel</button>
+                </div>
+            </form>
 
-// Captcha Script
+            <script type="text/javascript">
 
-            function checkform(theform) {
-                var why = "";
+    // Captcha Script
 
-                if (theform.CaptchaInput.value == "") {
-                    why += "- Please Enter CAPTCHA Code.\n";
-                }
-                if (theform.CaptchaInput.value != "") {
-                    if (ValidCaptcha(theform.CaptchaInput.value) == false) {
-                        why += "- The CAPTCHA Code Does Not Match.\n";
+                function checkform(theform) {
+                    var why = "";
+
+                    if (theform.CaptchaInput.value == "") {
+                        why += "- Please Enter CAPTCHA Code.\n";
+                    }
+                    if (theform.CaptchaInput.value != "") {
+                        if (ValidCaptcha(theform.CaptchaInput.value) == false) {
+                            why += "- The CAPTCHA Code Does Not Match.\n";
+                        }
+                    }
+                    if (why != "") {
+                        alert(why);
+                        return false;
                     }
                 }
-                if (why != "") {
-                    alert(why);
-                    return false;
+
+                var a = Math.ceil(Math.random() * 9) + '';
+                var b = Math.ceil(Math.random() * 9) + '';
+                var c = Math.ceil(Math.random() * 9) + '';
+                var d = Math.ceil(Math.random() * 9) + '';
+                var e = Math.ceil(Math.random() * 9) + '';
+
+                var code = a + b + c + d + e;
+                document.getElementById("txtCaptcha").value = code;
+                document.getElementById("CaptchaDiv").innerHTML = code;
+
+    // Validate input against the generated number
+                function ValidCaptcha() {
+                    var str1 = removeSpaces(document.getElementById('txtCaptcha').value);
+                    var str2 = removeSpaces(document.getElementById('CaptchaInput').value);
+                    if (str1 == str2) {
+                        return true;
+                    } else {
+                        return false;
+                    }
                 }
-            }
 
-            var a = Math.ceil(Math.random() * 9) + '';
-            var b = Math.ceil(Math.random() * 9) + '';
-            var c = Math.ceil(Math.random() * 9) + '';
-            var d = Math.ceil(Math.random() * 9) + '';
-            var e = Math.ceil(Math.random() * 9) + '';
-
-            var code = a + b + c + d + e;
-            document.getElementById("txtCaptcha").value = code;
-            document.getElementById("CaptchaDiv").innerHTML = code;
-
-// Validate input against the generated number
-            function ValidCaptcha() {
-                var str1 = removeSpaces(document.getElementById('txtCaptcha').value);
-                var str2 = removeSpaces(document.getElementById('CaptchaInput').value);
-                if (str1 == str2) {
-                    return true;
-                } else {
-                    return false;
+    // Remove the spaces from the entered and generated code
+                function removeSpaces(string) {
+                    return string.split(' ').join('');
                 }
-            }
-
-// Remove the spaces from the entered and generated code
-            function removeSpaces(string) {
-                return string.split(' ').join('');
-            }
-        </script>
+            </script>
     </body>
 </html>
