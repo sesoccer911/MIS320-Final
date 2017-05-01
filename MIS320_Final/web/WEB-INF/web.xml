@@ -41,6 +41,14 @@
         <servlet-name>CartServlet</servlet-name>
         <servlet-class>CartServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>WishListAddServlet</servlet-name>
+        <servlet-class>WishListAddServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>WishListServlet</servlet-name>
+        <servlet-class>WishListServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
@@ -76,6 +84,14 @@
     <servlet-mapping>
         <servlet-name>CartServlet</servlet-name>
         <url-pattern>/CartServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WishListAddServlet</servlet-name>
+        <url-pattern>/WishListAddServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WishListServlet</servlet-name>
+        <url-pattern>/WishListServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

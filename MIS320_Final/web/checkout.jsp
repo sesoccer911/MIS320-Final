@@ -21,14 +21,12 @@
     </head>
     <body>
 
-        <c:set var="output" value="bwgarner1"/>
-
         <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
                            url="jdbc:mysql://localhost:3306/sakila"
                            user="root"  password="nbuser"/>
         <%
             Object obj = request.getSession().getAttribute("username");
-            out.print(obj);
+            
         %>
 
         <sql:query dataSource="${snapshot}" var="user_id">

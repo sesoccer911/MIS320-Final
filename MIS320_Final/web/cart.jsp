@@ -28,7 +28,7 @@
                            user="root"  password="nbuser"/>
         <%
             Object obj = request.getSession().getAttribute("username");
-            out.print(obj);
+            
         %>
         <sql:query dataSource="${snapshot}" var="user_id">
             Select C.customer_id

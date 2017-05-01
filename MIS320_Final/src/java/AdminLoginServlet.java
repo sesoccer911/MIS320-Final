@@ -38,7 +38,7 @@ public class AdminLoginServlet extends HttpServlet {
             pst.setString(2, password);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
-                out.println("Correct login credentials");
+                response.sendRedirect("admin.jsp");
             } else {
                 out.println("Incorrect login credentials");
 

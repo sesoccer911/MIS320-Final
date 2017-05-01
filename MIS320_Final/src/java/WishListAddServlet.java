@@ -91,7 +91,7 @@ public class WishListAddServlet extends HttpServlet
             while(result.next()){
                 filmId = result.getInt("film_id");
             }
-            PreparedStatement p = connection.prepareStatement("insert into wishlistitems(wishItems_id, film_id) VALUES(\"" + wishListId + "\" , \"" + filmId + "\")");
+            PreparedStatement p = connection.prepareStatement("insert into wishlistitems(wishList_wishList_id, film_id) VALUES(\"" + wishListId + "\" , \"" + filmId + "\")");
             p.executeUpdate();
             response.sendRedirect("WishList.jsp");
         } catch (Exception e) {
