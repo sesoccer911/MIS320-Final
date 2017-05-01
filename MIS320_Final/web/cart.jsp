@@ -22,14 +22,15 @@
     <body> 
         <br>
         <br>
-        <input hidden='true' id="output"/>
-        <script type="text/javascript">
-                    (function (global) {
-                        document.getElementById("output").value = global.localStorage.getItem("mySharedData");
-                    }(window));
-                </script>
-        <c:set var="output" value="test"/>
+        <input id="output"/>
 
+        
+        <script type="text/javascript">
+            (function (global) {
+                document.getElementById("output").value = global.localStorage.getItem("mySharedData");
+            }(window));
+        </script> 
+        <c:set var="output" value="tr11pod"/>
         <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
                            url="jdbc:mysql://localhost:3306/sakila"
                            user="root"  password="nbuser"/>
@@ -41,7 +42,7 @@
             on CI.cart_id = C.cart_id
             join customer as CS
             on CS.customer_id = C.customer_id
-            where username = ?
+            where username like ?
             limit 1;
             <sql:param value="${output}"/>
         </sql:query>
@@ -54,7 +55,7 @@
             on CI.film_id = F.film_id
             join customer as CS
             on CS.customer_id = C.customer_id
-            Where username = ?;
+            Where username like ?;
             <sql:param value="${output}"/>
         </sql:query>
         <sql:query dataSource="${snapshot}" var="result">
@@ -66,7 +67,7 @@
             on CI.film_id = F.film_id
             join customer as CS
             on CS.customer_id = C.customer_id
-            Where username = ?;
+            Where username like ?;
             <sql:param value="${output}"/>
         </sql:query>
 
@@ -119,6 +120,6 @@
                     </tr>
                     </tbody>
                 </table>
-                
-                </body>
-                </html>
+        </div>
+    </body>
+</html>
