@@ -25,8 +25,8 @@ public class CartServlet {
         String action = request.getParameter("action");
         System.out.println(action);
         if (action.equalsIgnoreCase("delete")) {
-            int orderNum = Integer.parseInt(request.getParameter("cartItem_id"));
-            dao.deleteProduct(orderNum);
+            int cartItem_id = Integer.parseInt(request.getParameter("cartItem_id"));
+            dao.deleteProduct(cartItem_id);
             forward = LIST_PRODUCT;
             //request.setAttribute("products", dao.getAllProducts());
         } else {

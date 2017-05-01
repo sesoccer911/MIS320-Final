@@ -26,8 +26,12 @@
         <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
                            url="jdbc:mysql://localhost:3306/sakila"
                            user="root"  password="nbuser"/>
-        <c:set var="username" value= "${sessionScope[output]}"/>
-        <sql:query dataSource="${snapshot}" var="username">
+        <%
+            Object obj = request.getSession().getAttribute("username");
+            out.print(obj);
+        %>
+
+        <sql:query dataSource="${snapshot}" var="user_id">
             Select C.customer_id
             from cart as C
             join cartofitems as CI
@@ -36,7 +40,7 @@
             on CS.customer_id = C.customer_id
             where username = ?
             limit 1;
-            <sql:param value="${output}"/>
+            <sql:param value="${username}"/>
         </sql:query>
         <sql:query dataSource="${snapshot}" var="subtotal">
             Select sum(F.rental_rate * F.rental_duration)as Subtotal
@@ -48,7 +52,7 @@
             join customer as CS
             on CS.customer_id = C.customer_id
             Where username = ?;
-            <sql:param value="${output}"/>
+            <sql:param value="${username}"/>
         </sql:query>
         <form method="post" action="CheckoutServlet">
 
@@ -57,7 +61,7 @@
                 <c:forEach items="${subtotal.rows}" var="subtotal">                    
                     <input type="text" value="${subtotal.Subtotal}" readonly="true"
                     </c:forEach>
-                    <input id="output" hidden="true" name="username"/>
+                    <input id="output" hidden="true" name="${username}"/>
                 <label><b>PayPal Username</b></label>
                 <input type="text" placeholder="Enter PayPal Username" name="pUser" required>
 

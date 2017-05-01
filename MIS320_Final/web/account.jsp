@@ -16,26 +16,30 @@
         <title> Customer Account</title>
     </head>
     <body>     
-        Please input any information you want to change to your information. 
-             <form method="POST" action='CustomerUpdateServlet'  onsubmit="return checkform(this);">
-            First Name : <input
-                type="text" name="firstName"
-                value="<c:out value="${customer.first_name}" />" /> <br /> 
-            Last Name : <input
-                type="text" name="lastName"
-                value="<c:out value="${customer.last_name}" />" /> <br /> 
-            Password : <input
-                type="text" name="password"
-                value="<c:out value="${customer.password}" />" /> <br /> 
-            Email : <input type="text" name="email"
-                           value="<c:out value="${customer.email}" />" /> <br /> 
+        Please input any information you want to change to your information.
 
-           <button type="submit" class="loginbtn">Submit Changes</button>
+        <form method="post" action="CustomerUpdateServlet">
+            Username: <input name="output" id="output" type="readonly"/> <br/>
+            <script type="text/javascript">
+                /*jslint sub: true, maxerr: 50, indent: 4, browser: true */
+
+                (function (global) {
+                    document.getElementById("output").value = global.localStorage.getItem("mySharedData");
+                }(window));
+            </script>
+            First Name : <input
+                type="text" name="firstName"/> <br /> 
+            Last Name : <input
+                type="text" name="lastName"/> <br /> 
+            Password : <input
+                type="text" name="password"/> <br /> 
+            Email : <input type="text" name="email"/><br /> 
+            <input type="submit" value="Submit Changes"/>
         </form> 
 
-                           <a href="RentalHistory.jsp" style="margin-left:30px;">View Rental History</a>
-                           <a href="CurrentRentals.jsp" style="margin-left:30px;">View Current Rentals</a>
-                           <a href="WishList.jsp" style="margin-left:30px;">View Wish List</a>
-        
+        <a href="RentalHistory.jsp" style="margin-left:30px;">View Rental History</a>
+        <a href="CurrentRentals.jsp" style="margin-left:30px;">View Current Rentals</a>
+        <a href="WishList.jsp" style="margin-left:30px;">View Wish List</a>
+
     </body>
 </html> 

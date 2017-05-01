@@ -27,24 +27,25 @@ public class CustomerUpdateServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        String fName = request.getParameter("fName");
-        String lName = request.getParameter("lName");
+        String username = request.getParameter("output");
+        String fName = request.getParameter("firstName");
+        String lName = request.getParameter("lastName");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/sakila", "root", "nbuser");
-            PreparedStatement pst = conn.prepareStatement("update first_name, last_name, email, password FROM customer WHERE username=? and password=?");
-            pst.setString(1, fName);
-            pst.setString(2, lName);
-            pst.setString(3, email);
-            pst.setString(4, password);
-            ResultSet rs = pst.executeQuery();
-            if (rs.next()) {
-                out.println("Credentials saved");
+            String s = "update customer set first_name = \""+ fName + "\", last_name = \"" + lName +"\", email = \"" + email +"\", password = \"" + password+
+                    "\" WHERE username= \"" + username + "\"";
+            System.out.println(s);
+            PreparedStatement pst = conn.prepareStatement("update customer set first_name = \""+ fName + "\", last_name = \"" + lName +"\", email = \"" + email +"\", password = \"" + password+
+                    "\" WHERE username= \"" + username + "\"");
+            int rs = pst.executeUpdate();
+            if (rs > 0) {
+                response.sendRedirect("account.jsp");
             } else {
                 out.println("Incorrect credentials");
-
+                
             }
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
