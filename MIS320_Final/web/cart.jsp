@@ -88,7 +88,11 @@
                     <tbody>
                         <c:forEach items="${result.rows}" var="cart">
                             <tr>
-                                <td><a href="CartServlet?action=delete&cartItem_id=<c:out value="${cart.cartItem_id}"/>">Delete</a></td>
+                                <td>
+                                    <form method="get" action="CartServlet">
+                                        <input name="cartItem_id" value="${cart.cartItem_id}" type="hidden"/>
+                                        <input type="submit" value="Delete"/></form>
+                                </td>
                                 <td><c:out value="${cart.title}" /></td>
                                 <td class="price"><c:out value="${cart.Price}" /></td>
                             </tr>
