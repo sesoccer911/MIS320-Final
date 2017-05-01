@@ -41,7 +41,6 @@ public class CustomerUpdateServlet extends HttpServlet
             PreparedStatement pst = conn.prepareStatement("update customer set first_name = \""+ fName + "\", last_name = \"" + lName +"\", email = \"" + email +"\", password = \"" + password+
                     "\" WHERE username= \"" + username + "\"");
             int rs = pst.executeUpdate();
-            response.sendRedirect("account.jsp");
             if (rs > 0) {
                 response.sendRedirect("account.jsp");
             } else {

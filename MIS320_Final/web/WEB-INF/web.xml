@@ -33,6 +33,14 @@
         <servlet-name>CartAddServlet</servlet-name>
         <servlet-class>CartAddServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CustomerUpdateServlet</servlet-name>
+        <servlet-class>CustomerUpdateServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CartServlet</servlet-name>
+        <servlet-class>CartServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
@@ -60,6 +68,14 @@
     <servlet-mapping>
         <servlet-name>CartAddServlet</servlet-name>
         <url-pattern>/CartAddServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerUpdateServlet</servlet-name>
+        <url-pattern>/CustomerUpdateServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CartServlet</servlet-name>
+        <url-pattern>/CartServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
