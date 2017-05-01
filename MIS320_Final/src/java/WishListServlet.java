@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author sesoc
+ * @author Evan
  */
-public class CartServlet {
-
-    private static String LIST_PRODUCT = "/cart.jsp";
-    private CartDao dao;
-
+public class WishListServlet
+{
+    private static String LIST_PRODUCT = "/WishList.sp";
+    private WishListDao dao;
+    
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String forward = "";
@@ -25,7 +25,7 @@ public class CartServlet {
         String action = request.getParameter("action");
         System.out.println(action);
         if (action.equalsIgnoreCase("delete")) {
-            int orderNum = Integer.parseInt(request.getParameter("cartItem_id"));
+            int orderNum = Integer.parseInt(request.getParameter("wishItems_id"));
             dao.deleteProduct(orderNum);
             forward = LIST_PRODUCT;
             //request.setAttribute("products", dao.getAllProducts());
@@ -38,7 +38,7 @@ public class CartServlet {
 
         view.forward(request, response);
     }
-
+    
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         FilmController f = new FilmController();
@@ -48,12 +48,12 @@ public class CartServlet {
             System.out.println(s);
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/sakila", "root", "nbuser");
-            PreparedStatement pr = connection.prepareStatement("Select C.customer_id\n"
-                    + "from cart as C\n"
-                    + "join cartofitems as CI\n"
-                    + "on CI.cart_id = C.cart_id\n"
+            PreparedStatement pr = connection.prepareStatement("Select W.customer_id\n"
+                    + "from wishlist as W\n"
+                    + "join wishlistitems as WI\n"
+                    + "on WI.wishList_wishList_id = W.wishList_id\n"
                     + "join customer as CS\n"
-                    + "on CS.customer_id = C.customer_id\n"
+                    + "on CS.customer_id = W.customer_id\n"
                     + "where username = " + s + "\n"
                     + "limit 1;");
             ResultSet rs = pr.executeQuery();
@@ -64,41 +64,40 @@ public class CartServlet {
             System.out.println(custId);
             custId++;
             PreparedStatement pre = connection.prepareStatement("Select sum(F.rental_rate * F.rental_duration)as Subtotal\n"
-                    + "from cart as C\n"
-                    + "join cartofitems as CI\n"
-                    + "on CI.cart_id = C.cart_id\n"
+                    + "from wishlist as W\n"
+                    + "join wishlistitems as WI\n"
+                    + "on WI.wishList_wishList_id = W.wishList_id\n"
                     + "join film as F\n"
-                    + "on CI.film_id = F.film_id\n"
+                    + "on WI.film_id = F.film_id\n"
                     + "join customer as CS\n"
-                    + "on CS.customer_id = C.customer_id\n"
+                    + "on CS.customer_id = W.customer_id\n"
                     + "Where username =  " + custId);
             ResultSet r = pre.executeQuery();
-            int cartId = 0;
+            int wishListId = 0;
             while (r.next()) {
-                cartId = r.getInt("cart_id");
+                wishListId = r.getInt("wishList_id");
             }
-            System.out.println(cartId);
+            System.out.println(wishListId);
             System.out.println(title);
-            PreparedStatement prep = connection.prepareStatement("Select F.title, (F.rental_rate * F.rental_duration) as Price, cartItem_id\n"
-                    + "from cart as C\n"
-                    + "join cartofitems as CI\n"
-                    + "on CI.cart_id = C.cart_id\n"
+            PreparedStatement prep = connection.prepareStatement("Select F.title, (F.rental_rate * F.rental_duration) as Price, wishItems_id\n"
+                    + "from wishlist as W\n"
+                    + "join wishlistitems as WI\n"
+                    + "on WI.wishList_wishList_id = W.wishList_id\n"
                     + "join film as F\n"
-                    + "on CI.film_id = F.film_id\n"
+                    + "on WI.film_id = F.film_id\n"
                     + "join customer as CS\n"
-                    + "on CS.customer_id = C.customer_id\n"
+                    + "on CS.customer_id = W.customer_id\n"
                     + "Where username = " + custId);
             ResultSet result = prep.executeQuery();
             int filmId = 0;
             while (result.next()) {
                 filmId = result.getInt("film_id");
             }
-            PreparedStatement p = connection.prepareStatement("insert into cartofitems(cart_id, film_id) VALUES(\"" + cartId + "\" , \"" + filmId + "\")");
+            PreparedStatement p = connection.prepareStatement("insert into cartofitems(wishList_wishList_id, film_id) VALUES(\"" + wishListId + "\" , \"" + filmId + "\")");
             p.executeUpdate();
-            response.sendRedirect("cart.jsp");
+            response.sendRedirect("WishList.jsp");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 }

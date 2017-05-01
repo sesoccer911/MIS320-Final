@@ -16,6 +16,34 @@
         <title>Wish List</title>
     </head>
     <body>
+         <table width="850" border="1" class="cart">
+                    <thead>
+                        <tr>
+                            <th>Movie Title</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach items="${result.rows}" var="wishlist">
+                            <tr>
+                                <td><a href="WishListServlet.java?action=delete&cartItem_id=<c:out value="${wishlist.wishList_id}"/>">Delete</a></td>                
+                                <td><c:out value="${wishlist.title}" /></td>
+                                <td class="price"><c:out value="${wishlist.Price}" /></td>
+                            </tr>
+                        </c:forEach>
+                        <tr class="totalColumn">
+                            <td  colspan="2" align="right" ><b>Subtotal: </b></td>
+                    <form action="checkout.jsp" method="post" border="">
+                        <c:forEach items="${subtotal.rows}" var="subtotal">
+                            <td class="price"><c:out value="${subtotal.Subtotal}" /></td>
+                        </c:forEach>
+
+                        </tr>
+                        </tbody>
+                </table>
         
+        <p><form action="account.jsp" method="post">
+                            <button type="submit" name="your_name" value="your_value" class="accloginbtn">Back To Account</button>
+                        </form>
     </body>
 </html>
