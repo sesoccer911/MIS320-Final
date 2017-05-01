@@ -1,7 +1,7 @@
 <%-- 
     Document   : WishList
     Created on : Apr 30, 2017, 9:43:09 PM
-    Author     : gutsman214
+    Author     : Evan
 --%>
 
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>

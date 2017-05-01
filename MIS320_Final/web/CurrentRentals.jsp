@@ -1,7 +1,7 @@
 <%-- 
     Document   : CurrentRentals
     Created on : Apr 30, 2017, 9:42:57 PM
-    Author     : gutsman214
+    Author     : Evan
 --%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>

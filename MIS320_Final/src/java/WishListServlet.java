@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,9 +14,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Evan
  */
-public class WishListServlet
+public class WishListServlet extends HttpServlet
 {
-    private static String LIST_PRODUCT = "/WishList.sp";
+    private static String LIST_PRODUCT = "/WishList.jsp";
     private WishListDao dao;
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

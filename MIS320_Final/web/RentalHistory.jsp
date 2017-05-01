@@ -16,6 +16,9 @@
         <title>Rental History</title>
     </head>
     <body>
+        
+        
+        
         <table width="850" border="1" class="cart">
                     <thead>
                         <tr>
