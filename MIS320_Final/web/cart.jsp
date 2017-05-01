@@ -8,7 +8,8 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %> 
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1"%>
 <html>
@@ -22,30 +23,23 @@
     <body> 
         <br>
         <br>
-        <input hidden='true' id="output" name="output"/>
-        <script type="text/javascript">
-            (function (global) {
-                document.getElementById("output").value = global.localStorage.getItem("mySharedData");
-                var x = global.localStorage.getItem("mySharedData");
-            <c:set var="output" value="${x}"/>
-            }(window));
-
-        </script>
-
         <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
                            url="jdbc:mysql://localhost:3306/sakila"
                            user="root"  password="nbuser"/>
-        <c:set var="username" value= "${sessionScope[output]}"/>
-        <sql:query dataSource="${snapshot}" var="username">
+        <%
+            Object obj = request.getSession().getAttribute("username");
+            out.print(obj);
+        %>
+        <sql:query dataSource="${snapshot}" var="user_id">
             Select C.customer_id
             from cart as C
             join cartofitems as CI
             on CI.cart_id = C.cart_id
             join customer as CS
             on CS.customer_id = C.customer_id
-            where username = ?
+            where username like ?
             limit 1;
-            <sql:param value="${output}"/>
+            <sql:param value="${username}"/>
         </sql:query>
         <sql:query dataSource="${snapshot}" var="subtotal">
             Select sum(F.rental_rate * F.rental_duration)as Subtotal
@@ -56,8 +50,8 @@
             on CI.film_id = F.film_id
             join customer as CS
             on CS.customer_id = C.customer_id
-            Where username = ?;
-            <sql:param value="${output}"/>
+            Where username like ?;
+            <sql:param value="${username}"/>
         </sql:query>
         <sql:query dataSource="${snapshot}" var="result">
             Select F.title, (F.rental_rate * F.rental_duration) as Price, cartItem_id
@@ -68,8 +62,8 @@
             on CI.film_id = F.film_id
             join customer as CS
             on CS.customer_id = C.customer_id
-            Where username = ?;
-            <sql:param value="${output}"/>
+            Where username like ?;
+            <sql:param value="${username}"/>
         </sql:query>
 
         <div align="center">
@@ -121,6 +115,7 @@
                     </tr>
                     </tbody>
                 </table>
-
-                </body>
-                </html>
+            </form>
+        </div>
+    </body>
+</html>

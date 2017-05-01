@@ -76,6 +76,23 @@
                         </f:facet>
                         <h:commandLink action="#{filmController.prepareView}" value="View"/>
                     </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value=" "/>
+                        </f:facet>
+                        <form method="post" action="CartAddServlet">
+                            <input name="title" value="#{item.title}" type="hidden"/>
+                            <input name="output" id="output" type="hidden"/>
+                            <script type="text/javascript">
+                                /*jslint sub: true, maxerr: 50, indent: 4, browser: true */
+
+                                (function (global) {
+                                    document.getElementById("output").value = global.localStorage.getItem("mySharedData");
+                                }(window));
+                            </script>
+                            <input type="submit" value="Add to Cart"/>
+                        </form>
+                    </h:column>
                 </h:dataTable>
                 <br/>
             </h:form>
