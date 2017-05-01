@@ -3,8 +3,14 @@
     Created on : Apr 29, 2017, 5:00:31 PM
     Author     : Brandon
 --%>
+<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ page import="javax.servlet.http.*,javax.servlet.*" %>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+         pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
     <title>Blockbuster Checkout</title>
@@ -14,17 +20,50 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
+        <input id="output"/>
+        <c:set var="output" value="test"/>
+
+        <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
+                           url="jdbc:mysql://localhost:3306/sakila"
+                           user="root"  password="nbuser"/>
+        <c:set var="username" value= "${sessionScope[output]}"/>
+        <sql:query dataSource="${snapshot}" var="username">
+            Select C.customer_id
+            from cart as C
+            join cartofitems as CI
+            on CI.cart_id = C.cart_id
+            join customer as CS
+            on CS.customer_id = C.customer_id
+            where username = ?
+            limit 1;
+            <sql:param value="${output}"/>
+        </sql:query>
+        <sql:query dataSource="${snapshot}" var="subtotal">
+            Select sum(F.rental_rate * F.rental_duration)as Subtotal
+            from cart as C
+            join cartofitems as CI
+            on CI.cart_id = C.cart_id
+            join film as F
+            on CI.film_id = F.film_id
+            join customer as CS
+            on CS.customer_id = C.customer_id
+            Where username = ?;
+            <sql:param value="${output}"/>
+        </sql:query>
         <form method="post" action="CheckoutServlet"
               onsubmit="return checkform(this);">
 
             <div class="container">
-
+                <label><b>Total Cost</b></label>
+                <c:forEach items="${subtotal.rows}" var="subtotal">                    
+                    <input type="text" value="${subtotal.Subtotal}" readonly="true"
+                </c:forEach>
 
                 <label><b>PayPal Username</b></label>
                 <input type="text" placeholder="Enter PayPal Username" name="pUser" required>
 
                 <label><b>PayPal Password</b></label>
-                <input type="text" placeholder="Enter PayPal Password" name="pPass" required>
+                <input type="password" placeholder="Enter PayPal Password" name="password" required>
 
                 <p>By checking out you agree to our <a href="#">Terms & Privacy</a>.</p>
 
@@ -44,11 +83,16 @@
                 </div>
                 <br><br>
                 <!-- END CAPTCHA -->
-
-                <button type="button"  class="cancelbtn">Cancel</button>
+                
                 <button type="submit" class="checkoutbtn">Checkout</button>
             </div>
         </form>
+        <div class="button-container">
+            <form method="get" border="0" action="cart.jsp">
+                <div>
+                    <button type="submit"class="cancelbtn">Cancel</button>
+                </div>
+            </form>
         
         <script type="text/javascript">
 
@@ -96,6 +140,11 @@
             function removeSpaces(string) {
                 return string.split(' ').join('');
             }
+        </script>
+        <script type="text/javascript">
+                    (function (global) {
+                        document.getElementById("output").value = global.localStorage.getItem("mySharedData");
+                    }(window));
         </script>
     </body>
 </html>
