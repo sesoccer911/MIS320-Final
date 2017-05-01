@@ -16,7 +16,8 @@
         <title> Customer Account</title>
     </head>
     <body>     
-             <form method="POST" action='CustomerController' name="">
+        Please input any information you want to change to your information. 
+             <form method="POST" action='CustomerUpdateServlet'  onsubmit="return checkform(this);">
             First Name : <input
                 type="text" name="firstName"
                 value="<c:out value="${customer.first_name}" />" /> <br /> 
@@ -29,14 +30,12 @@
             Email : <input type="text" name="email"
                            value="<c:out value="${customer.email}" />" /> <br /> 
 
-            <input type="submit" value="Submit" />
-        </form>  
-                  
-      <h:commandLink action="#{CustomerController}" value="View Rental History"/>
-      <h:commandLink action="#{CustomerController}" value="View CurrentRentals"/>
-      <h:commandLink action="#{CustomerController.prepareView}" value="View WishList"/>
-                           
-    </body>
+           <button type="submit" class="loginbtn">Submit Changes</button>
+        </form> 
 
-   
+                           <a href="RentalHistory.jsp" style="margin-left:30px;">View Rental History</a>
+                           <a href="CurrentRentals.jsp" style="margin-left:30px;">View Current Rentals</a>
+                           <a href="WishList.jsp" style="margin-left:30px;">View Wish List</a>
+        
+    </body>
 </html> 
