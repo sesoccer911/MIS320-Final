@@ -1,13 +1,13 @@
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
-/**
- *
- * @author sesoc
- */
+
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,15 +17,14 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class DbConnectionUtil {
-
-    private static Connection connection = null;
+	private static Connection connection = null;
 
     public static Connection getConnection() {
-        if (connection != null) {
+        if (connection != null)
             return connection;
-        } else {
+        else {
             try {
-                Properties prop = new Properties();
+            	Properties prop = new Properties();
                 InputStream inputStream = DbConnectionUtil.class.getClassLoader().getResourceAsStream("/dvdrental/db.properties");
                 prop.load(inputStream);
                 String driver = prop.getProperty("driver");
