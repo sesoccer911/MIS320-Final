@@ -13,9 +13,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
          <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
         <script type="text/javascript" src="js/jquery-ui-1.8.18.custom.min.js"></script>
-        <title>JSP Page</title>
+        <title>Wish List</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        
     </body>
 </html>
