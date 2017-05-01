@@ -22,7 +22,7 @@
     <body> 
         <br>
         <br>
-        <input id="output"/>
+        <input hidden='true' id="output"/>
         <c:set var="output" value="test"/>
 
         <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
