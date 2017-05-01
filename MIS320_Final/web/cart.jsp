@@ -87,7 +87,7 @@
                     <tbody>
                         <c:forEach items="${result.rows}" var="cart">
                             <tr>
-                                <td><a href="CartServlet?action=delete&cartItem_id=<c:out value="${cart.cartItem_id}"/>">Delete</a></td>
+                                <td><a href="CartServlet.java?action=delete&cartItem_id=<c:out value="${cart.cartItem_id}"/>">Delete</a></td>
                                 <td><c:out value="${cart.title}" /></td>
                                 <td class="price"><c:out value="${cart.Price}" /></td>
                             </tr>
