@@ -21,7 +21,7 @@
             </div>
             <div class="container">
                 <label><b>Username</b></label>
-                <input id="username" type="text" placeholder="Enter Username" name="username" required>
+                <input id="username" type="text" placeholder="Enter Username" name="username" >
                 <label><b>Password</b></label>
                 <input type="password" placeholder="Enter Password" name="password" required>
                 <input id="Login" type="submit" value="Login" />
