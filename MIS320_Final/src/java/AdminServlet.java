@@ -45,9 +45,9 @@
 //            pst.setString(6, username);
 //            ResultSet rs = pst.executeQuery();
 //            if (rs.next()) {
-//                out.println("Correct login credentials");
+//                out.println("Correct customer credentials");
 //            } else {
-//                out.println("Incorrect login credentials");
+//                out.println("Incorrect customer credentials");
 //
 //            }
 //        } catch (ClassNotFoundException | SQLException e) {
