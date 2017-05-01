@@ -16,7 +16,29 @@
         <title>Rental History</title>
     </head>
     <body>
+        <br>
+        <br>
+        <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
+                           url="jdbc:mysql://localhost:3306/sakila"
+                           user="root"  password="nbuser"/>
         
+          <%
+            Object obj = request.getSession().getAttribute("username");
+            out.print(obj);
+          %>
+        <sql:query dataSource="${snapshot}" var="customer_id">
+            select c.customer_id, r.rental_date, i.inventory_id, title
+            from rental as r
+            join customer as c
+            on c.customer_id = r.customer_id
+            join inventory as i
+            on i.inventory_id = r.inventory_id
+            join film as f
+            on f.film_id = i.film_id
+            where c.customer_id = ?
+            order by rental_date
+            <sql:param value="${customerid}"/>
+        </sql:query>
         
         
         <table width="850" border="1" class="cart">
@@ -26,8 +48,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach items="${result.rows}" var="wishlist">
-                            <tr>>
+                        <c:forEach items="${result.rows}" var="rental">
+                            <tr>
+                                <td><c:out value="${rental.title}"/></td>
                             </tr>
                         </c:forEach>
 
