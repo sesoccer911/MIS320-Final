@@ -22,13 +22,15 @@
     <body> 
         <br>
         <br>
-        <input hidden='true' id="output"/>
+        <input hidden='true' id="output" name="output"/>
         <script type="text/javascript">
-                    (function (global) {
-                        document.getElementById("output").value = global.localStorage.getItem("mySharedData");
-                    }(window));
-                </script>
-        <c:set var="output" value="test"/>
+            (function (global) {
+                document.getElementById("output").value = global.localStorage.getItem("mySharedData");
+                var x = global.localStorage.getItem("mySharedData");
+            <c:set var="output" value="${x}"/>
+            }(window));
+
+        </script>
 
         <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
                            url="jdbc:mysql://localhost:3306/sakila"
@@ -119,6 +121,6 @@
                     </tr>
                     </tbody>
                 </table>
-                
+
                 </body>
                 </html>
