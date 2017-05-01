@@ -1,108 +1,114 @@
+<%-- 
+    Document   : login
+    Created on : Mar 28, 2017, 12:53:00 PM
+    Author     : sgreen
+--%>
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*" %>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1"%>
 <html>
-    <div align="center">
+    <head>
+        <link rel="stylesheet" href="resources/css/main.css">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript" src="resources/scripts/jquery-1.8.2.min.js"></script>
+        <title>Home Page</title>
+    </head>
+    <body> 
         <br>
         <br>
+        <input id="output"/>
+
         <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
                            url="jdbc:mysql://localhost:3306/sakila"
                            user="root"  password="nbuser"/>
+        <c:set var="username" value= "${sessionScope[output]}"/>
+        <sql:query dataSource="${snapshot}" var="username">
+            Select C.customer_id
+            from cart as C
+            join cartofitems as CI
+            on CI.cart_id = C.cart_id
+            join customer as CS
+            on CS.customer_id = C.customer_id
+            where username = ?
+            limit 1;
+            <sql:param value="${output}"/>
+        </sql:query>
+        <sql:query dataSource="${snapshot}" var="subtotal">
+            Select  sum(F.rental_rate * F.rental_duration)as Subtotal
+            from cart as C
+            join cartofitems as CI
+            on CI.cart_id = C.cart_id
+            join film as F
+            on CI.film_id = F.film_id
+        </sql:query>
+        <sql:query dataSource="${snapshot}" var="result">
+            Select F.title, (F.rental_rate * F.rental_duration) as Price, cartItem_id
+            from cart as C
+            join cartofitems as CI
+            on CI.cart_id = C.cart_id
+            join film as F
+            on CI.film_id = F.film_id
+        </sql:query>
 
-        <body bgcolor="FFFFFF" background="backgrounds/stripevertbg6.gif" topmargin="0" marginheight="0" leftmargin="0" marginwidth="0"> 
-        <head>
-            <link rel="stylesheet" href="resources/css/main.css">
-            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <title>Home Page</title>
-        </head>
         <div align="center">
-            <script>
-                (function (global) {
-                    document.getElementById("output").value = global.localStorage.getItem("mySharedData");
-                }(window));
-            </script>
-            <table width="850" style="BACKGROUND-COLOR: #FFFFFF;" border="1">
+            <table width="850" border="1">
                 <tr>
                     <td align="center">
                         <img src="images/cart.png">
                     </td>
                 </tr>
-                <tr>
-                    <td align="center" colspan="3">
-                        <table width="650">
-                            <tr>
-                                <td>
-                                    <div align="justify" style="color:#3e160e;">
-                                        This is a custom HTML header.  This header may contain any HTML code, text,
-                                        graphics, active content such as dropdown menus, java, javascript, or other
-                                        content that you would like to display at the top of your cart pages.  You create
-                                        custom HTML header yourself and specify its location in the CustomCart Administrator.
-                                        Also note the custom wallpaper (brown striped background), this is uploaded via the
-                                        administrator.  You may change the wallpaper any time you wish to change the look of
-                                        your cart.
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                <tr>
-                <tr>
-                </tr>
             </table>
         </div> 
         <div align="center">
-
-            <table width="850" style="BACKGROUND-COLOR: #FFFFFF;" border="1">
-                <thead>
+            <form action="checkout.jsp" method="post" border="">
+                <table width="850" border="1" class="cart">
+                    <thead>
                     <tr>
-                        <th></th>
+                        <th>Action</th>
                         <th>Movie Title</th>
-                        <th>Movie Description</th>
                         <th>Price</th>
                     </tr>
-                </thead>
-                <tbody>
-                    <c:forEach items="${products}" var="product">
-                        <tr>
-                            <td bgcolor="ffffff" align="center" valign="middle" class="cart-td-trash">&nbsp;<a href="cart.cfm?op=del&id=213051&cid=41"><img src="images/trash.gif" alt="Remove&nbsp;" title="Remove&nbsp;" border="0"></a>&nbsp;</td>
-                            <td><c:out value="${product.custID}" /></td>
-                            <td><c:out value="${product.Price}" /></td>
-                            <td><c:out value="${product.quantity}" /></td>
+                    </thead>
+                    <tbody>
+                        <c:forEach items="${result.rows}" var="cart">
+                            <tr>
+                                <td><a href="CartServlet?action=delete&cartItem_id=<c:out value="${cart.cartItem_id}"/>">Delete</a></td>
+                                <td><c:out value="${cart.title}" /></td>
+                                <td class="price"><c:out value="${cart.Price}" /></td>
+                            </tr>
+                        </c:forEach>
+                        <tr class="totalColumn">
+                            <td  colspan="2" align="right" ><b>Subtotal: </b></td>
+                    <form action="checkout.jsp" method="post" border="">
+                        <c:forEach items="${subtotal.rows}" var="subtotal">
+                            <td class="price"><c:out value="${subtotal.Subtotal}" /></td>
+                        </c:forEach>
+
                         </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
-            <table width="850" bgcolor="ffffff" border="1">
-                <tr>
-                    <td align="center">
-                        <br>
-                        <img src="https://secure.ironhorsemedia.com/client_headers/furnituredemo/graphics/brownbar.jpg">
-                        <br>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="center">
-                        <br>
-                        <div style="width:650px;" align="justify">
-                            This is a custom HTML footer.  This footer may contain any HTML code, text,
-                            graphics, active content such as dropdown menus, java, javascript, or other
-                            content that you would like to display at the bottom of your cart pages.  You create
-                            custom HTML footer yourself and specify its location in the CustomCart Administrator.
-                            This footer is not required, but does add a nice custom touch to your cart.
-                        </div>
-                        <br>
-                        <br>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            <p><a href="index.xhtml">Back to Search</a></p>
-            <p><a href="checkout.jsp">Checkout Cart</a></p>
-        </div>
-        <p><br><br>
-            </html>
+                        </tbody>
+                </table>
+                <table width="850" border="1">
+                    <tr>
+                    <div style="width:650px;">
+                        <button type="submit" name="your_name" value="Subtotal" class="loginbtn">Checkout Cart</button>
+                        </form>
+                        <p><form action="faces/index.xhtml" method="post">
+                            <button type="submit" name="your_name" value="your_value" class="adminloginbtn">Back To Search</button>
+                        </form>
+                    </div>
+                    </tr>
+                    </tbody>
+                </table>
+                <script type="text/javascript">
+                    (function (global) {
+                        document.getElementById("output").value = global.localStorage.getItem("mySharedData");
+                    }(window));
+                </script>
+                </body>
+                </html>
