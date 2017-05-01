@@ -1,25 +1,17 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core">
-
-
     <ui:composition template="template.xhtml">
         <ui:define name="top">Welcome to the Movie Browser<div align="justify"><a href="cart.jsp">Cart</a></div></ui:define>
         <ui:define name="body">
-
             <script type="text/javascript" src="resources/scripts/jquery-1.8.2.min.js"></script>
             <script type="text/javascript" src="resources/src/jquery.autocomplete.js"></script>
             <script type="text/javascript" src="resources/scripts/AutoComplete.js"></script>
             <script type="text/javascript" src="resources/scripts/films.js"></script>
-            <script>
-                (function (global) {
-                    document.getElementById("output").value = global.localStorage.getItem("mySharedData");
-                }(window));
-            </script>
+            <script type="text/javascript" src="resources/scripts/Actors.js"></script>
             <form method="post" action="AutoCompleteForward">
                 <div class="container">
                     <div style="position: relative; height: 80px;">
@@ -29,7 +21,6 @@
                     <div id="selection-ajax" name="selection-ajax" type="hidden"></div>
                 </div>
             </form>
-
             <select id="CategoryDropdown" name="CategoryDropdown">
                 <option value="">Please choose a category</option>
                 <option value="indexAction.xhtml">Action</option>
@@ -90,7 +81,9 @@
                         <f:facet name="header">
                             <h:outputText value=" "/>
                         </f:facet>
-                        <h:commandLink action="#{filmController.addToCart()}" value="Add to Cart"/>
+                        <form method="post" action="CartAddServlet">
+                            <input type="submit" value="Add to Cart"/>
+                        </form>
                     </h:column>
                 </h:dataTable>
                 <br/>

@@ -10,11 +10,8 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
-import org.hibernate.Session;
 
 /**
  *
@@ -243,9 +240,15 @@ public class FilmController implements Serializable {
         current = (Film) getFilmTitles().getRowData();
         return "browse";
     }
-
-    public void addToCart() {
+    
+    public Film prepareFilm(){
+        current = null;
         current = (Film) getFilmTitles().getRowData();
+        return current;
+    }
+
+    //public void addToCart() {
+        /*current = (Film) getFilmTitles().getRowData();
         boolean test = helper.addFilmToCart(current);
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
@@ -254,15 +257,8 @@ public class FilmController implements Serializable {
     }
         catch(Exception e){
             e.printStackTrace();
-        }
-    }
-
-    public String prepareJSView() {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        //      int id = session.getElementById("selection-ajax");
-        current = helper.getFilmByID(1);
-        return "browse";
-    }
+        }*/
+    //}
 
     public String prepareList() {
         recreateModel();
