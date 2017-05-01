@@ -23,6 +23,7 @@
         <br>
         <br>
         <input id="output"/>
+        <c:set var="output" value="test"/>
 
         <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
                            url="jdbc:mysql://localhost:3306/sakila"
@@ -40,12 +41,16 @@
             <sql:param value="${output}"/>
         </sql:query>
         <sql:query dataSource="${snapshot}" var="subtotal">
-            Select  sum(F.rental_rate * F.rental_duration)as Subtotal
+            Select sum(F.rental_rate * F.rental_duration)as Subtotal
             from cart as C
             join cartofitems as CI
             on CI.cart_id = C.cart_id
             join film as F
             on CI.film_id = F.film_id
+            join customer as CS
+            on CS.customer_id = C.customer_id
+            Where username = ?;
+            <sql:param value="${output}"/>
         </sql:query>
         <sql:query dataSource="${snapshot}" var="result">
             Select F.title, (F.rental_rate * F.rental_duration) as Price, cartItem_id
@@ -54,6 +59,10 @@
             on CI.cart_id = C.cart_id
             join film as F
             on CI.film_id = F.film_id
+            join customer as CS
+            on CS.customer_id = C.customer_id
+            Where username = ?;
+            <sql:param value="${output}"/>
         </sql:query>
 
         <div align="center">
@@ -69,11 +78,11 @@
             <form action="checkout.jsp" method="post" border="">
                 <table width="850" border="1" class="cart">
                     <thead>
-                    <tr>
-                        <th>Action</th>
-                        <th>Movie Title</th>
-                        <th>Price</th>
-                    </tr>
+                        <tr>
+                            <th>Action</th>
+                            <th>Movie Title</th>
+                            <th>Price</th>
+                        </tr>
                     </thead>
                     <tbody>
                         <c:forEach items="${result.rows}" var="cart">
