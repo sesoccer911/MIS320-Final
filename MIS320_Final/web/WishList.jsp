@@ -33,7 +33,7 @@
                         </c:forEach>
                         <tr class="totalColumn">
                             <td  colspan="2" align="right" ><b>Subtotal: </b></td>
-                    <form action="checkout.jsp" method="post" border="">
+                    <form action="account.jsp" method="post" border="">
                         <c:forEach items="${subtotal.rows}" var="subtotal">
                             <td class="price"><c:out value="${subtotal.Subtotal}" /></td>
                         </c:forEach>
