@@ -79,25 +79,37 @@ public class CartAddServlet extends HttpServlet {
             throws ServletException, IOException {
         FilmController f = new FilmController();
         String s = request.getParameter("output");
+        String title = request.getParameter("title");
         try {
+            System.out.println(s);
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/sakila", "root", "nbuser");
-            PreparedStatement pr = connection.prepareStatement("select customer_id from customer where username like \"" + s + "\"");
+            PreparedStatement pr = connection.prepareStatement("select customer_id from customer where username = \"" + s + "\"");
             ResultSet rs = pr.executeQuery();
             int custId = 0;
             while (rs.next()) {
-                custId = rs.getInt("customer_id");
-                System.out.println(custId);
+                custId = rs.getInt("customer_id");             
             }
+            System.out.println(custId);
+            custId++;
             PreparedStatement pre = connection.prepareStatement("select cart_id from cart where customer_id = " + custId);
             ResultSet r = pre.executeQuery();
             int cartId = 0;
             while(r.next()){
                 cartId = r.getInt("cart_id");
             }
-            Film add = f.prepareFilm();
+            System.out.println(cartId);
+            System.out.println(title);
+            //Film add = f.prepareFilm();
             //PreparedStatement p = connection.prepareStatement("insert into cartofitems(film_id) VALUES(" +  add.getFilmId() + ")");
-            PreparedStatement p = connection.prepareStatement("insert into cartofitems(cart_id, film_id) VALUES(" + cartId + " , " + add.getFilmId() + ")");
+            //System.out.println(add.getTitle());
+            PreparedStatement prep = connection.prepareStatement("select film_id from film where title = \"" + title + "\"");
+            ResultSet result = prep.executeQuery();
+            int filmId = 0;
+            while(result.next()){
+                filmId = result.getInt("film_id");
+            }
+            PreparedStatement p = connection.prepareStatement("insert into cartofitems(cart_id, film_id) VALUES(\"" + cartId + "\" , \"" + filmId + "\")");
             p.executeUpdate();
             response.sendRedirect("cart.jsp");
         } catch (Exception e) {
