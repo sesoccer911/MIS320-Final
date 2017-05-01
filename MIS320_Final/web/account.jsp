@@ -38,8 +38,8 @@
         </form> 
 
         <a href="RentalHistory.jsp" style="margin-left:30px;">View Rental History</a>
-        <a href="CurrentRentals.jsp" style="margin-left:30px;">View Current Rentals</a>
         <a href="WishList.jsp" style="margin-left:30px;">View Wish List</a>
+        <a href="index.xhtml" style="margin-left:30px;">Return to browsing</a>
 
     </body>
 </html> 
