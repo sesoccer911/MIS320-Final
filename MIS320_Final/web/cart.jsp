@@ -23,6 +23,11 @@
         <br>
         <br>
         <input hidden='true' id="output"/>
+        <script type="text/javascript">
+                    (function (global) {
+                        document.getElementById("output").value = global.localStorage.getItem("mySharedData");
+                    }(window));
+                </script>
         <c:set var="output" value="test"/>
 
         <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
@@ -114,10 +119,6 @@
                     </tr>
                     </tbody>
                 </table>
-                <script type="text/javascript">
-                    (function (global) {
-                        document.getElementById("output").value = global.localStorage.getItem("mySharedData");
-                    }(window));
-                </script>
+                
                 </body>
                 </html>
