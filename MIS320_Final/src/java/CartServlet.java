@@ -1,11 +1,5 @@
-package dvdrental;
 
-
-import dvdrental.CartDao;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +22,7 @@ public class CartServlet {
         String action = request.getParameter("action");
         System.out.println(action);
         if (action.equalsIgnoreCase("delete")) {
-            int orderNum = Integer.parseInt(request.getParameter("orderNum"));
+            int orderNum = Integer.parseInt(request.getParameter("cartItem_id"));
             dao.deleteProduct(orderNum);
             forward = LIST_PRODUCT;
             //request.setAttribute("products", dao.getAllProducts());

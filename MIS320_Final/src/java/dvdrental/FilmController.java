@@ -242,7 +242,6 @@ public class FilmController implements Serializable {
     }
     
     public Film prepareFilm(){
-        current = null;
         current = (Film) getFilmTitles().getRowData();
         return current;
     }
