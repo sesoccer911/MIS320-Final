@@ -16,9 +16,15 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class CartServlet {
 
+    private static final long serialVersionUID = 1L;
     private static String LIST_PRODUCT = "/cart.jsp";
     private CartDao dao;
 
+        public CartServlet() {
+        super();
+        dao = new CartDao();
+    }
+    
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String forward = "";
