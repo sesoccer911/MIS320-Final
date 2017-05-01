@@ -26,12 +26,9 @@
         <script type="text/javascript">
             (function (global) {
                 document.getElementById("output").value = global.localStorage.getItem("mySharedData");
-                var x = global.localStorage.getItem("mySharedData");
-            <c:set var="output" value="${x}"/>
             }(window));
-
         </script>
-
+        <c:set var="output" value="bwgarner1"/>
         <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
                            url="jdbc:mysql://localhost:3306/sakila"
                            user="root"  password="nbuser"/>
@@ -121,6 +118,6 @@
                     </tr>
                     </tbody>
                 </table>
-
-                </body>
-                </html>
+            </form>
+    </body>
+</html>
